@@ -19,6 +19,11 @@ const links = [
   ["Models", "/models"],
   ["Packs", "/packs"],
   ["Ownership", "/ownership"],
+  ["Auth", "/auth"],
+  ["Onboarding", "/onboarding"],
+  ["Vault", "/vault"],
+  ["Router", "/router"],
+  ["Connectors", "/connectors"],
   ["Settings", "/settings"]
 ];
 

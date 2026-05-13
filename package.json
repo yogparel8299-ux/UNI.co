@@ -15,7 +15,8 @@
     "react": "latest",
     "react-dom": "latest",
     "openai": "latest",
-    "lucide-react": "latest"
+    "lucide-react": "latest",
+    "@anthropic-ai/sdk": "latest"
   },
   "devDependencies": {
     "typescript": "latest",

@@ -1,5 +1,6 @@
 const { createClient } = require("@supabase/supabase-js");
 const OpenAI = require("openai");
+// Model router exists in app runtime. Worker keeps OpenAI fallback for now.
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
