@@ -15,6 +15,10 @@ const links = [
   ["Activity", "/activity"],
   ["Billing", "/billing"],
   ["Schedules", "/schedules"],
+  ["Integrations", "/integrations"],
+  ["Models", "/models"],
+  ["Packs", "/packs"],
+  ["Ownership", "/ownership"],
   ["Settings", "/settings"]
 ];
 
