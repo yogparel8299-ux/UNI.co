@@ -1,0 +1,15 @@
+Add these in Vercel Project Settings > Environment Variables:
+
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+OPENAI_API_KEY=
+NEXT_PUBLIC_APP_NAME=UNIC.ai
+NEXT_PUBLIC_APP_URL=https://your-domain.com
+UNIC_WORKER_SECRET=
+
+Build settings:
+Framework Preset: Next.js
+Install Command: npm install
+Build Command: npm run build
+Output Directory: .next
