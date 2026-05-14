@@ -9,7 +9,8 @@
     "worker": "node workers/runtime-worker.js",
     "super-worker": "node workers/super-worker.js",
     "connection-worker": "node workers/connection-sync-worker.js",
-    "launch-worker": "node workers/launch-worker.js"
+    "launch-worker": "node workers/launch-worker.js",
+    "all-workers": "node workers/all-workers.js"
   },
   "dependencies": {
     "@supabase/ssr": "latest",
@@ -32,6 +33,7 @@
     "@types/react": "latest",
     "tailwindcss": "latest",
     "postcss": "latest",
-    "autoprefixer": "latest"
+    "autoprefixer": "latest",
+    "@tailwindcss/postcss": "latest"
   }
 }

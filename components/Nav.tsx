@@ -38,6 +38,14 @@ const links = [
   ["Worker Health", "/worker-health"],
   ["Secret Manager", "/secret-manager"],
   ["Realtime Stream", "/realtime-stream"],
+  ["Marketplace Explore", "/marketplace-explore"],
+  ["Billing Center", "/billing-center"],
+  ["Workflow Studio", "/workflow-studio"],
+  ["Brain Search", "/brain-search"],
+  ["Swarm Visualizer", "/swarm-visualizer"],
+  ["Live Runtime", "/live-runtime"],
+  ["Admin Console", "/admin-console"],
+  ["Final Onboarding", "/final-onboarding"],
   ["Settings", "/settings"]
 ];
 
