@@ -29,6 +29,8 @@ const links = [
   ["Realtime", "/realtime"],
   ["RAG", "/rag"],
   ["Security", "/admin/security"],
+  ["Connection Layer", "/connection-layer"],
+  ["MCP Gateway", "/mcp-gateway"],
   ["Settings", "/settings"]
 ];
 
