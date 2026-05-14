@@ -24,6 +24,11 @@ const links = [
   ["Vault", "/vault"],
   ["Router", "/router"],
   ["Connectors", "/connectors"],
+  ["Brain", "/brain"],
+  ["Triggers", "/triggers"],
+  ["Realtime", "/realtime"],
+  ["RAG", "/rag"],
+  ["Security", "/admin/security"],
   ["Settings", "/settings"]
 ];
 

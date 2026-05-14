@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "worker": "node workers/runtime-worker.js"
+    "worker": "node workers/runtime-worker.js",
+    "super-worker": "node workers/super-worker.js"
   },
   "dependencies": {
     "@supabase/ssr": "latest",
@@ -16,7 +17,9 @@
     "react-dom": "latest",
     "openai": "latest",
     "lucide-react": "latest",
-    "@anthropic-ai/sdk": "latest"
+    "@anthropic-ai/sdk": "latest",
+    "stripe": "latest",
+    "zod": "latest"
   },
   "devDependencies": {
     "typescript": "latest",
