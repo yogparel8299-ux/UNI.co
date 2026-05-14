@@ -125,6 +125,14 @@ app/api/worker-heartbeat; do
   check_dir "$dir"
 done
 
+check_dir "app/skills"
+check_dir "app/api/create-skill"
+check_dir "app/api/assign-skill"
+check_dir "app/api/remove-agent-skill"
+check_dir "app/api/run-skill"
+check_file "components/skills/SkillAssignmentPanel.tsx"
+check_file "lib/skills/run-skill.ts"
+
 echo ""
 echo "== Important components/libs/workers =="
 check_file "components/Nav.tsx"

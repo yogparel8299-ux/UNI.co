@@ -49,6 +49,7 @@ const links = [
   ["Realtime Live", "/realtime-live"],
   ["Admin Analytics", "/admin-analytics"],
   ["Seller Dashboard", "/seller-dashboard"],
+  ["Skills", "/skills"],
   ["Settings", "/settings"]
 ];
 
