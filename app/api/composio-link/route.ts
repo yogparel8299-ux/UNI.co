@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 import { NextRequest, NextResponse } from "next/server";
 import { createComposioAuthLink } from "@/lib/composio/client";
 import { supabaseAdmin } from "@/lib/supabase-admin";

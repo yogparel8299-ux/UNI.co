@@ -17,10 +17,7 @@ export async function checkRateLimit({
 
   const { count } = await supabaseAdmin
     .from("rate_limit_events")
-    .select("*", {
-      count: "exact",
-      head: true
-    })
+    .select("*", { count: "exact", head: true })
     .eq("company_id", companyId)
     .eq("route", route)
     .eq("identifier", identifier)
@@ -38,10 +35,5 @@ export async function checkRateLimit({
     limit_count: limit
   });
 
-  return {
-    allowed,
-    requestCount,
-    limit,
-    remaining: Math.max(0, limit - requestCount)
-  };
+  return { allowed, requestCount, limit, remaining: Math.max(0, limit - requestCount) };
 }

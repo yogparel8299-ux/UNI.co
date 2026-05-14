@@ -10,7 +10,8 @@
     "super-worker": "node workers/super-worker.js",
     "connection-worker": "node workers/connection-sync-worker.js",
     "launch-worker": "node workers/launch-worker.js",
-    "all-workers": "node workers/all-workers.js"
+    "all-workers": "node workers/all-workers.js",
+    "production-worker": "node workers/production-worker.js"
   },
   "dependencies": {
     "@supabase/ssr": "latest",
@@ -25,7 +26,8 @@
     "zod": "latest",
     "razorpay": "latest",
     "pdf_parse": "npm:pdf-parse",
-    "mammoth": "latest"
+    "mammoth": "latest",
+    "pdf-parse": "latest"
   },
   "devDependencies": {
     "typescript": "latest",

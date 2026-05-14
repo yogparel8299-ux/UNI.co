@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 import { NextRequest, NextResponse } from "next/server";
 import { checkRateLimit } from "@/lib/rate-limit/check";
 
@@ -13,19 +16,8 @@ export async function POST(req: NextRequest) {
       windowMinutes: body.window_minutes || 60
     });
 
-    return NextResponse.json({
-      ok: true,
-      result
-    });
+    return NextResponse.json({ ok: true, result });
   } catch (error: any) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: error.message
-      },
-      {
-        status: 500
-      }
-    );
+    return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
   }
 }

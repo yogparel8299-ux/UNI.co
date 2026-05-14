@@ -46,6 +46,9 @@ const links = [
   ["Live Runtime", "/live-runtime"],
   ["Admin Console", "/admin-console"],
   ["Final Onboarding", "/final-onboarding"],
+  ["Realtime Live", "/realtime-live"],
+  ["Admin Analytics", "/admin-analytics"],
+  ["Seller Dashboard", "/seller-dashboard"],
   ["Settings", "/settings"]
 ];
 

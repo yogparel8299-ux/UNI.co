@@ -1,9 +1,20 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+
+export async function GET() {
+  return NextResponse.json({ ok: true, route: "buy-pack", methods: ["POST"] });
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+
+    if (!body.company_id || !body.pack_id) {
+      return NextResponse.json({ ok: false, error: "company_id and pack_id are required." }, { status: 400 });
+    }
 
     const { data: pack, error: packError } = await supabaseAdmin
       .from("credit_packs")
@@ -13,51 +24,15 @@ export async function POST(req: NextRequest) {
 
     if (packError) throw packError;
 
-    const totalCredits = Number(pack.credits) + Number(pack.bonus_credits || 0);
-
-    const { data: wallet } = await supabaseAdmin
-      .from("company_credit_wallets")
-      .select("*")
-      .eq("company_id", body.company_id)
-      .single();
-
-    let newBalance = totalCredits;
-
-    if (wallet) {
-      newBalance = Number(wallet.balance || 0) + totalCredits;
-
-      await supabaseAdmin
-        .from("company_credit_wallets")
-        .update({
-          balance: newBalance,
-          lifetime_purchased: Number(wallet.lifetime_purchased || 0) + totalCredits
-        })
-        .eq("company_id", body.company_id);
-    } else {
-      await supabaseAdmin
-        .from("company_credit_wallets")
-        .insert({
-          company_id: body.company_id,
-          balance: totalCredits,
-          lifetime_purchased: totalCredits
-        });
-    }
-
-    await supabaseAdmin.from("credit_ledger").insert({
-      company_id: body.company_id,
-      event_type: "pack_purchase",
-      amount: totalCredits,
-      balance_after: newBalance,
-      metadata: { pack_id: pack.id, pack_name: pack.name, price: pack.price }
-    });
+    const totalCredits = Number(pack.credits || 0) + Number(pack.bonus_credits || 0);
 
     return NextResponse.json({
       ok: true,
-      message: "Pack added. Replace this placeholder with Stripe/Razorpay payment confirmation before production.",
-      credits_added: totalCredits,
-      balance_after: newBalance
+      message: "Use Stripe/Razorpay webhook to confirm payment before adding credits.",
+      pack,
+      totalCredits
     });
   } catch (error: any) {
-    return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
+    return NextResponse.json({ ok: false, error: error.message || "Buy pack failed." }, { status: 500 });
   }
 }
