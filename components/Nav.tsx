@@ -31,6 +31,13 @@ const links = [
   ["Security", "/admin/security"],
   ["Connection Layer", "/connection-layer"],
   ["MCP Gateway", "/mcp-gateway"],
+  ["Dataset Lab", "/dataset-lab"],
+  ["Marketplace Seller", "/marketplace-seller"],
+  ["Notifications", "/notifications"],
+  ["Usage Dashboard", "/usage-dashboard"],
+  ["Worker Health", "/worker-health"],
+  ["Secret Manager", "/secret-manager"],
+  ["Realtime Stream", "/realtime-stream"],
   ["Settings", "/settings"]
 ];
 

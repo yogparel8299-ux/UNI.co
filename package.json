@@ -8,7 +8,8 @@
     "start": "next start",
     "worker": "node workers/runtime-worker.js",
     "super-worker": "node workers/super-worker.js",
-    "connection-worker": "node workers/connection-sync-worker.js"
+    "connection-worker": "node workers/connection-sync-worker.js",
+    "launch-worker": "node workers/launch-worker.js"
   },
   "dependencies": {
     "@supabase/ssr": "latest",
@@ -20,7 +21,10 @@
     "lucide-react": "latest",
     "@anthropic-ai/sdk": "latest",
     "stripe": "latest",
-    "zod": "latest"
+    "zod": "latest",
+    "razorpay": "latest",
+    "pdf_parse": "npm:pdf-parse",
+    "mammoth": "latest"
   },
   "devDependencies": {
     "typescript": "latest",
