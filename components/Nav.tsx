@@ -50,6 +50,11 @@ const links = [
   ["Admin Analytics", "/admin-analytics"],
   ["Seller Dashboard", "/seller-dashboard"],
   ["Skills", "/skills"],
+  ["Realtime Dashboard", "/realtime-dashboard"],
+  ["Rollback Center", "/rollback-center"],
+  ["Approval Inbox", "/approval-inbox"],
+  ["Notifications", "/notifications-center"],
+  ["Enterprise Control", "/enterprise-control"],
   ["Settings", "/settings"]
 ];
 
