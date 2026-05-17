@@ -3,6 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { requiredEnv, optionalEnv } from "@/lib/env/required";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { decryptSecret } from "@/lib/crypto";
+import { enforceAiLimits } from "@/lib/ai-limits/enforce";
 
 async function getCompanySecret(companyId: string, provider: string) {
   const { data } = await supabaseAdmin
@@ -32,7 +33,22 @@ export async function runRealModel({
   provider?: string;
   model?: string;
 }) {
+  
   const selectedProvider = provider || "openai";
+  const source = provider ? "byok" : "platform";
+
+  const limitCheck = await enforceAiLimits({
+    companyId,
+    provider: selectedProvider,
+    model,
+    estimatedTokens: Math.ceil((prompt.length + (systemPrompt || "").length) / 3),
+    source: source as "platform" | "byok"
+  });
+
+  if (!limitCheck.allowed) {
+    throw new Error(limitCheck.reason || "AI usage blocked by plan limits.");
+  }
+
 
   if (selectedProvider === "openai") {
     const apiKey = await getCompanySecret(companyId, "openai") || requiredEnv("OPENAI_API_KEY");
