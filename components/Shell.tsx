@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "@/components/Nav";
 
 export default function Shell({
   title,
@@ -10,19 +10,15 @@ export default function Shell({
   children: React.ReactNode;
 }) {
   return (
-    <main className="page-shell">
+    <main className="page-shell min-h-screen">
       <Nav />
-      <section className="main">
-        <div className="flex items-center justify-between gap-8 mb-10">
+      <section className="px-6 py-8 lg:ml-[280px] lg:px-10">
+        <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="page-title">{title}</h1>
-            <p className="page-subtitle">
-              {subtitle || "Live UNIC.ai command center powered by Supabase, workers and AI runtime infrastructure."}
-            </p>
+            <h1 className="text-5xl md:text-7xl font-black tracking-[-0.07em]">{title}</h1>
+            {subtitle && <p className="page-subtitle mt-4">{subtitle}</p>}
           </div>
-          <button className="primary-button">
-            Create
-          </button>
+          <a href="/signup" className="primary-button hidden md:inline-flex">get started</a>
         </div>
         {children}
       </section>
