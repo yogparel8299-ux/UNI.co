@@ -1,40 +1,36 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { PROTECTED_ROUTES } from "./lib/protected-routes";
+
+function isProtected(pathname: string) {
+  return PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
+}
 
 export function middleware(req: NextRequest) {
-  const protectedPrefixes = [
-    "/dashboard",
-    "/command",
-    "/agents",
-    "/swarms",
-    "/tasks",
-    "/datasets",
-    "/workflow-studio",
-    "/billing-center",
-    "/admin-console"
-  ];
-
   const pathname = req.nextUrl.pathname;
-  const isProtected = protectedPrefixes.some((prefix) => pathname.startsWith(prefix));
 
-  if (!isProtected) {
+  if (
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/_next") ||
+    pathname.includes(".")
+  ) {
     return NextResponse.next();
   }
 
-  // This is a production-ready placeholder gate.
-  // Full Supabase cookie session validation should be enabled after env vars are added.
+  if (!isProtected(pathname)) return NextResponse.next();
+
+  const hasAuthCookie =
+    req.cookies.get("sb-access-token") ||
+    req.cookies.get("sb-refresh-token") ||
+    Array.from(req.cookies.getAll()).some((c) => c.name.startsWith("sb-"));
+
+  if (!hasAuthCookie) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    "/dashboard/:path*",
-    "/command/:path*",
-    "/agents/:path*",
-    "/swarms/:path*",
-    "/tasks/:path*",
-    "/datasets/:path*",
-    "/workflow-studio/:path*",
-    "/billing-center/:path*",
-    "/admin-console/:path*"
-  ]
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"]
 };

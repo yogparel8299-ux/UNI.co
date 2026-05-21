@@ -1,24 +1,9 @@
-import Shell from "@/components/Shell";
-import Card from "@/components/Card";
-import DataTable from "@/components/DataTable";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import AppShell from "@/components/unic/AppShell";
 
-export default async function Page() {
-  const { data, count } = await supabaseAdmin
-    .from("datasets")
-    .select("*", { count: "exact" })
-    .order("created_at", { ascending: false })
-    .limit(50);
-
+export default function Page() {
   return (
-    <Shell title="Datasets">
-      <div className="grid grid-cols-3 gap-6 mb-8">
-        <Card title="Total Records" value={count || 0} />
-        <Card title="Database Table" value="datasets" />
-        <Card title="Status" value="Live" />
-      </div>
-
-      <DataTable rows={data || []} />
-    </Shell>
+    <AppShell title="Datasets" subtitle="Upload and index company knowledge.">
+      <div className="grid gap-4 md:grid-cols-3">{["Create","Configure","Monitor","Review","Run","Export"].map((x)=>(<div key={x} className="rounded-2xl border border-neutral-200 bg-white p-6"><h2 className="text-2xl font-black">{x}</h2><p className="mt-3 text-sm text-neutral-500">Workspace action for this module.</p></div>))}</div>
+    </AppShell>
   );
 }

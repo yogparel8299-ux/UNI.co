@@ -1,52 +1,9 @@
-"use client";
+import AppShell from "@/components/unic/AppShell";
 
-import { useEffect, useState } from "react";
-
-export default function RealtimeDashboardPage() {
-  const [metrics, setMetrics] = useState<any[]>([]);
-
-  useEffect(() => {
-    async function load() {
-      const res = await fetch("/api/realtime-dashboard-metrics");
-      const data = await res.json();
-      setMetrics(data.metrics || []);
-    }
-
-    load();
-
-    const interval = setInterval(load, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
+export default function Page() {
   return (
-    <main className="page-shell">
-      <section className="main">
-        <h1 className="page-title">
-          Realtime Dashboard
-        </h1>
-
-        <p className="page-subtitle">
-          Live company operations, runtime metrics and execution monitoring.
-        </p>
-
-        <div className="grid grid-cols-4 gap-5 mt-10">
-          {metrics.map((metric) => (
-            <div
-              key={metric.id}
-              className="glass-card p-6"
-            >
-              <p className="text-gray-500 text-sm">
-                {metric.metric_key}
-              </p>
-
-              <h2 className="text-4xl font-black mt-3">
-                {metric.metric_value}
-              </h2>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
+    <AppShell title="Realtime" subtitle="Runtime events, worker health and execution streams.">
+      <div className="rounded-2xl border border-neutral-200 bg-white p-6"><div className="space-y-3">{["Workspace updated","Agent assigned","Workflow synced","Approval reviewed"].map((x)=>(<div key={x} className="flex justify-between rounded-xl border border-neutral-200 p-4"><span className="font-bold">{x}</span><span className="text-sm text-neutral-500">live</span></div>))}</div></div>
+    </AppShell>
   );
 }

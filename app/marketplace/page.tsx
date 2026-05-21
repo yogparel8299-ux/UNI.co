@@ -1,23 +1,9 @@
-import PublicNav from "@/components/marketing/PublicNav";
-import PublicFooter from "@/components/marketing/PublicFooter";
+import AppShell from "@/components/unic/AppShell";
 
-export default function MarketplacePage() {
+export default function Page() {
   return (
-    <main className="page-shell">
-      <PublicNav />
-      <section className="mx-auto max-w-7xl px-6 py-14">
-        <h1 className="page-title">Marketplace</h1>
-        <p className="page-subtitle mt-6">Discover agent templates, skill packs, workflow systems and company operating packs.</p>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {["Agent templates", "Skill packs", "Workflow systems"].map((x) => (
-            <div className="glass-card p-8" key={x}>
-              <h2 className="text-3xl font-black tracking-[-0.05em]">{x}</h2>
-              <p className="mt-4 text-slate-500 leading-7">Install ready-made assets into your workspace and customize them for your company.</p>
-            </div>
-          ))}
-        </div>
-      </section>
-      <PublicFooter />
-    </main>
+    <AppShell title="Marketplace" subtitle="Buy, sell and install agents, skills and workflows.">
+      <div className="grid gap-4 md:grid-cols-3">{["Create","Configure","Monitor","Review","Run","Export"].map((x)=>(<div key={x} className="rounded-2xl border border-neutral-200 bg-white p-6"><h2 className="text-2xl font-black">{x}</h2><p className="mt-3 text-sm text-neutral-500">Workspace action for this module.</p></div>))}</div>
+    </AppShell>
   );
 }

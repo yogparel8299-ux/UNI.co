@@ -1,22 +1,9 @@
-import Shell from "@/components/Shell";
-import DataTable from "@/components/DataTable";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import AppShell from "@/components/unic/AppShell";
 
-export default async function LiveRuntimePage() {
-  const { data } = await supabaseAdmin
-    .from("realtime_streams")
-    .select("*")
-    .order("created_at", {
-      ascending: false
-    })
-    .limit(150);
-
+export default function Page() {
   return (
-    <Shell
-      title="Live Runtime"
-      subtitle="Realtime execution stream for agents, workflows, tools and swarms."
-    >
-      <DataTable rows={data || []} />
-    </Shell>
+    <AppShell title="Live Runtime" subtitle="Live agent and workflow execution monitor.">
+      <div className="rounded-2xl border border-neutral-200 bg-white p-6"><div className="space-y-3">{["Workspace updated","Agent assigned","Workflow synced","Approval reviewed"].map((x)=>(<div key={x} className="flex justify-between rounded-xl border border-neutral-200 p-4"><span className="font-bold">{x}</span><span className="text-sm text-neutral-500">live</span></div>))}</div></div>
+    </AppShell>
   );
 }

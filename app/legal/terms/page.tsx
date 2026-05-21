@@ -1,0 +1,2 @@
+import PublicShell from "@/components/unic/PublicShell";
+export default function Page(){return <PublicShell><section className="mx-auto max-w-4xl px-6 py-14"><h1 className="text-6xl font-black tracking-[-.06em]">Terms</h1><p className="mt-6 leading-8 text-neutral-500">UNIC.ai workspace access, generated systems, exports and enterprise rights are governed by plan terms and applicable agreements.</p></section></PublicShell>}

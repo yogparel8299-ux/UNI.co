@@ -1,24 +1,9 @@
-import Shell from "@/components/Shell";
-import Card from "@/components/Card";
-import DataTable from "@/components/DataTable";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import AppShell from "@/components/unic/AppShell";
 
-export default async function Page() {
-  const { data, count } = await supabaseAdmin
-    .from("tasks")
-    .select("*", { count: "exact" })
-    .order("created_at", { ascending: false })
-    .limit(50);
-
+export default function Page() {
   return (
-    <Shell title="Tasks">
-      <div className="grid grid-cols-3 gap-6 mb-8">
-        <Card title="Total Records" value={count || 0} />
-        <Card title="Database Table" value="tasks" />
-        <Card title="Status" value="Live" />
-      </div>
-
-      <DataTable rows={data || []} />
-    </Shell>
+    <AppShell title="Tasks" subtitle="Task queue, ownership and execution status.">
+      <div className="rounded-2xl border border-neutral-200 bg-white p-6"><div className="space-y-3">{["Workspace updated","Agent assigned","Workflow synced","Approval reviewed"].map((x)=>(<div key={x} className="flex justify-between rounded-xl border border-neutral-200 p-4"><span className="font-bold">{x}</span><span className="text-sm text-neutral-500">live</span></div>))}</div></div>
+    </AppShell>
   );
 }

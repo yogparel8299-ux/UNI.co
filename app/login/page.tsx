@@ -2,16 +2,25 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { supabaseBrowser } from "@/lib/supabase-browser";
+import { createBrowserClient } from "@supabase/ssr";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(true);
   const [msg, setMsg] = useState("");
 
   async function login() {
     setMsg("Logging in...");
-    const supabase = supabaseBrowser();
+
+    const supabase = createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+    );
+
+    if (remember) localStorage.setItem("unic_remember_me", "true");
+    else localStorage.removeItem("unic_remember_me");
+
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
@@ -19,24 +28,31 @@ export default function LoginPage() {
       return;
     }
 
-    window.location.href = "/dashboard";
+    window.location.href = "/agents";
   }
 
   return (
-    <main className="page-shell min-h-screen grid place-items-center px-6">
-      <div className="glass-card w-full max-w-md p-8">
+    <main className="grid min-h-screen place-items-center bg-[#f7f7f8] p-6 text-black">
+      <div className="w-full max-w-md rounded-[32px] border border-neutral-200 bg-white p-8 shadow-[0_24px_90px_rgba(15,23,42,.07)]">
         <h1 className="text-5xl font-black tracking-[-0.06em]">Login</h1>
-        <p className="text-white/50 mt-3">Access your UNIC.ai workspace.</p>
+        <p className="mt-3 text-neutral-500">Access your AI company workspace.</p>
 
-        <input className="input-box mt-8" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input className="input-box mt-4" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <div className="mt-8 space-y-4">
+          <input className="w-full rounded-xl border border-neutral-200 px-4 py-3 outline-none" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input className="w-full rounded-xl border border-neutral-200 px-4 py-3 outline-none" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-        <button className="primary-button mt-6 w-full" onClick={login}>Login</button>
+          <label className="flex items-center gap-3 text-sm font-semibold text-neutral-600">
+            <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} />
+            Remember me on this device
+          </label>
 
-        {msg && <p className="mt-4 text-sm text-white/60">{msg}</p>}
+          <button onClick={login} className="w-full rounded-xl bg-black px-4 py-3 font-black text-white">Login</button>
+        </div>
 
-        <p className="mt-6 text-sm text-white/45">
-          New here? <Link className="text-white" href="/signup">Create account</Link>
+        {msg && <p className="mt-4 text-sm text-neutral-500">{msg}</p>}
+
+        <p className="mt-6 text-sm text-neutral-500">
+          No account? <Link href="/signup" className="font-black text-black">Create workspace</Link>
         </p>
       </div>
     </main>

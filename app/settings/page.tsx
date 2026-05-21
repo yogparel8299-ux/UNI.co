@@ -1,14 +1,9 @@
-import Shell from "@/components/Shell";
-import Card from "@/components/Card";
+import AppShell from "@/components/unic/AppShell";
 
-export default function Settings() {
+export default function Page() {
   return (
-    <Shell title="Settings">
-      <div className="grid grid-cols-3 gap-6">
-        <Card title="Brand" value="UNIC.ai" />
-        <Card title="Theme" value="Light Premium" />
-        <Card title="Backend" value="Supabase" />
-      </div>
-    </Shell>
+    <AppShell title="Settings" subtitle="Workspace, model keys, security and controls.">
+      <div className="grid gap-4 md:grid-cols-3">{["Create","Configure","Monitor","Review","Run","Export"].map((x)=>(<div key={x} className="rounded-2xl border border-neutral-200 bg-white p-6"><h2 className="text-2xl font-black">{x}</h2><p className="mt-3 text-sm text-neutral-500">Workspace action for this module.</p></div>))}</div>
+    </AppShell>
   );
 }
