@@ -1,24 +1,23 @@
-import Shell from "@/components/Shell";
-import Card from "@/components/Card";
-import DataTable from "@/components/DataTable";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import PublicNav from "@/components/marketing/PublicNav";
+import PublicFooter from "@/components/marketing/PublicFooter";
 
-export default async function Page() {
-  const { data, count } = await supabaseAdmin
-    .from("marketplace_listings")
-    .select("*", { count: "exact" })
-    .order("created_at", { ascending: false })
-    .limit(50);
-
+export default function MarketplacePage() {
   return (
-    <Shell title="Marketplace">
-      <div className="grid grid-cols-3 gap-6 mb-8">
-        <Card title="Total Records" value={count || 0} />
-        <Card title="Database Table" value="marketplace_listings" />
-        <Card title="Status" value="Live" />
-      </div>
-
-      <DataTable rows={data || []} />
-    </Shell>
+    <main className="page-shell">
+      <PublicNav />
+      <section className="mx-auto max-w-7xl px-6 py-14">
+        <h1 className="page-title">Marketplace</h1>
+        <p className="page-subtitle mt-6">Discover agent templates, skill packs, workflow systems and company operating packs.</p>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {["Agent templates", "Skill packs", "Workflow systems"].map((x) => (
+            <div className="glass-card p-8" key={x}>
+              <h2 className="text-3xl font-black tracking-[-0.05em]">{x}</h2>
+              <p className="mt-4 text-slate-500 leading-7">Install ready-made assets into your workspace and customize them for your company.</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      <PublicFooter />
+    </main>
   );
 }
