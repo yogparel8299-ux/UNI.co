@@ -2,10 +2,12 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireProvider } from "@/lib/guards/providers";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export async function POST(req: NextRequest) {
   try {
+    requireProvider("stripe");
     const body = await req.json();
 
     const { data: listing } = await supabaseAdmin.from("marketplace_listings").select("*").eq("id", body.listing_id).single();

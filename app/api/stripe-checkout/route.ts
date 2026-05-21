@@ -2,11 +2,13 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireProvider } from "@/lib/guards/providers";
 import Stripe from "stripe";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export async function POST(req: NextRequest) {
   try {
+    requireProvider("stripe");
     const body = await req.json();
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 

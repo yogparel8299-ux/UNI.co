@@ -2,10 +2,12 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireProvider } from "@/lib/guards/providers";
 import { runAgentSkill } from "@/lib/skills/run-skill";
 
 export async function POST(req: NextRequest) {
   try {
+    requireProvider("openai");
     const body = await req.json();
 
     if (!body.company_id || !body.agent_id || !body.skill_assignment_id) {

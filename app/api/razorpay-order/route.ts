@@ -2,11 +2,13 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireProvider } from "@/lib/guards/providers";
 import Razorpay from "razorpay";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export async function POST(req: NextRequest) {
   try {
+    requireProvider("razorpay");
     const body = await req.json();
 
     const razorpay = new Razorpay({

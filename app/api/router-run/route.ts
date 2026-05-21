@@ -2,10 +2,12 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireProvider } from "@/lib/guards/providers";
 import { runRealModel } from "@/lib/models/real-router";
 
 export async function POST(req: NextRequest) {
   try {
+    requireProvider("openai");
     const body = await req.json();
 
     if (!body.company_id || !body.prompt) {

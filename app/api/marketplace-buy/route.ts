@@ -2,11 +2,13 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireProvider } from "@/lib/guards/providers";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { deductCredits } from "@/lib/billing/credits";
 
 export async function POST(req: NextRequest) {
   try {
+    requireProvider("stripe");
     const body = await req.json();
 
     const { data: listing, error } = await supabaseAdmin

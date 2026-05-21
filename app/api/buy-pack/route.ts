@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireProvider } from "@/lib/guards/providers";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export async function GET() {
@@ -10,6 +11,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    requireProvider("stripe");
     const body = await req.json();
 
     if (!body.company_id || !body.pack_id) {

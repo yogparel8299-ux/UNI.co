@@ -2,11 +2,13 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireProvider } from "@/lib/guards/providers";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { createEmbedding } from "@/lib/memory/embedding";
 
 export async function POST(req: NextRequest) {
   try {
+    requireProvider("openai");
     const body = await req.json();
     const embedding = await createEmbedding(body.content);
 
