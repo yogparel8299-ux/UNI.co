@@ -20,12 +20,9 @@ export async function createServerSupabase() {
 
 export async function getWorkspace() {
   const supabase = await createServerSupabase();
-
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) {
-    return { supabase, user: null, companyId: null, company: null };
-  }
+  if (!user) return { supabase, user: null, companyId: null, company: null };
 
   const { data: member } = await supabase
     .from("company_members")

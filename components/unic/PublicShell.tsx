@@ -11,19 +11,13 @@ export default function PublicShell({ children }: { children: React.ReactNode })
             <p className="text-xs text-neutral-500">AI company operating system</p>
           </div>
         </Link>
-
         <div className="hidden rounded-full border border-neutral-200 bg-white px-6 py-3 text-sm font-bold text-neutral-600 shadow-sm md:flex gap-8">
           <Link href="/dashboard">Demo</Link>
           <Link href="/pricing">Pricing</Link>
-          <Link href="/legal/privacy">Privacy</Link>
-          <Link href="/legal/ai-policy">AI Policy</Link>
+          <Link href="/login">Login</Link>
         </div>
-
-        <Link href="/signup" className="rounded-xl bg-black px-5 py-3 text-sm font-bold text-white">
-          Get Started
-        </Link>
+        <Link href="/signup" className="rounded-xl bg-black px-5 py-3 text-sm font-bold text-white">Get Started</Link>
       </nav>
-
       {children}
     </main>
   );

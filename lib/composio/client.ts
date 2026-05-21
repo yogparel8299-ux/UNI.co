@@ -1,62 +1,106 @@
-export async function createComposioAuthLink({
-  userId,
-  toolkit,
-  redirectUrl
+export async function callComposioTool({
+  connectedAccountId,
+  action,
+  payload
 }: {
-  userId: string;
-  toolkit: string;
-  redirectUrl?: string;
+  connectedAccountId?: string;
+  action: string;
+  payload?: any;
 }) {
-  const apiKey = process.env.COMPOSIO_API_KEY;
-  if (!apiKey) throw new Error("COMPOSIO_API_KEY missing.");
+  if (!process.env.COMPOSIO_API_KEY) {
+    throw new Error("COMPOSIO_API_KEY missing.");
+  }
 
-  const res = await fetch("https://backend.composio.dev/api/v3.1/connected_accounts/link", {
-    method: "POST",
-    headers: {
-      "x-api-key": apiKey,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      user_id: userId,
-      toolkit,
-      redirect_url: redirectUrl || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000/connectors"
-    })
-  });
+  const res = await fetch(
+    "https://backend.composio.dev/api/v3/tools/execute",
+    {
+      method: "POST",
+      headers: {
+        "x-api-key": process.env.COMPOSIO_API_KEY!,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        connected_account_id: connectedAccountId,
+        tool_slug: action,
+        arguments: payload || {}
+      })
+    }
+  );
 
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.message || "Composio auth link failed.");
-  return data;
+  const text = await res.text();
+
+  let json: any;
+
+  try {
+    json = JSON.parse(text);
+  } catch {
+    json = { raw: text };
+  }
+
+  if (!res.ok) {
+    throw new Error(
+      json?.message ||
+        json?.error ||
+        "Composio execution failed."
+    );
+  }
+
+  return json;
 }
 
-export async function executeComposioTool({
+export async function executeComposioTool(args: any) {
+  return callComposioTool(args);
+}
+
+export async function createComposioAuthLink({
   userId,
-  toolkit,
-  toolSlug,
-  argumentsJson
+  toolkit
 }: {
   userId: string;
   toolkit: string;
-  toolSlug: string;
-  argumentsJson: any;
 }) {
-  const apiKey = process.env.COMPOSIO_API_KEY;
-  if (!apiKey) throw new Error("COMPOSIO_API_KEY missing.");
+  if (!process.env.COMPOSIO_API_KEY) {
+    throw new Error("COMPOSIO_API_KEY missing.");
+  }
 
-  const res = await fetch("https://backend.composio.dev/api/v3/tools/execute", {
-    method: "POST",
-    headers: {
-      "x-api-key": apiKey,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      user_id: userId,
-      toolkit,
-      tool_slug: toolSlug,
-      arguments: argumentsJson || {}
-    })
-  });
+  const appUrl =
+    process.env.NEXT_PUBLIC_APP_URL ||
+    "http://localhost:3000";
 
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.message || "Composio tool execution failed.");
-  return data;
+  const res = await fetch(
+    "https://backend.composio.dev/api/v3/connected_accounts/initiate",
+    {
+      method: "POST",
+      headers: {
+        "x-api-key": process.env.COMPOSIO_API_KEY!,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        toolkit,
+        user_id: userId,
+        callback_url:
+          `${appUrl}/connection-layer`
+      })
+    }
+  );
+
+  const text = await res.text();
+
+  let json: any;
+
+  try {
+    json = JSON.parse(text);
+  } catch {
+    json = { raw: text };
+  }
+
+  if (!res.ok) {
+    throw new Error(
+      json?.message ||
+        json?.error ||
+        "Composio auth failed."
+    );
+  }
+
+  return json;
 }

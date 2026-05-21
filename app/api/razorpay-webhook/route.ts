@@ -1,22 +1,3 @@
-export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
-
-import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase-admin";
-
-export async function POST(req: NextRequest) {
-  try {
-    const payload = await req.json();
-
-    await supabaseAdmin.from("webhook_events").insert({
-      provider: "razorpay",
-      event_type: payload.event || "unknown",
-      payload,
-      processed: false
-    });
-
-    return NextResponse.json({ ok: true });
-  } catch (error: any) {
-    return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
-  }
-}
+export const dynamic="force-dynamic"; export const runtime="nodejs";
+import {NextRequest,NextResponse} from "next/server"; import {activatePlanAndCredits} from "@/lib/billing/credits";
+export async function POST(req:NextRequest){try{if(!process.env.RAZORPAY_KEY_ID||!process.env.RAZORPAY_KEY_SECRET)return NextResponse.json({ok:false,error:"Razorpay not configured"},{status:400}); const body=await req.json(); const payment=body.payload?.payment?.entity||{}; const notes=payment.notes||{}; if(body.event==="payment.captured"||body.event==="order.paid"){if(notes.company_id)await activatePlanAndCredits({companyId:notes.company_id,userId:notes.user_id||null,plan:notes.plan||"starter",provider:"razorpay",providerPaymentId:payment.id||body.payload?.order?.entity?.id,amount:payment.amount||0,currency:payment.currency||"INR"});} return NextResponse.json({ok:true});}catch(error:any){return NextResponse.json({ok:false,error:error.message},{status:500});}}

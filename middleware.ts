@@ -9,11 +9,7 @@ function isProtected(pathname: string) {
 export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
-  if (
-    pathname.startsWith("/api") ||
-    pathname.startsWith("/_next") ||
-    pathname.includes(".")
-  ) {
+  if (pathname.startsWith("/api") || pathname.startsWith("/_next") || pathname.includes(".")) {
     return NextResponse.next();
   }
 
@@ -24,13 +20,9 @@ export function middleware(req: NextRequest) {
     req.cookies.get("sb-refresh-token") ||
     Array.from(req.cookies.getAll()).some((c) => c.name.startsWith("sb-"));
 
-  if (!hasAuthCookie) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+  if (!hasAuthCookie) return NextResponse.redirect(new URL("/login", req.url));
 
   return NextResponse.next();
 }
 
-export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"]
-};
+export const config = { matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"] };

@@ -1,0 +1,3 @@
+export const dynamic="force-dynamic"; export const runtime="nodejs";
+import {NextRequest,NextResponse} from "next/server"; import {executeWorkflowGraph} from "@/lib/runtime/workflow-engine";
+export async function POST(req:NextRequest){try{const body=await req.json(); if(!body.company_id||!body.graph)return NextResponse.json({ok:false,error:"company_id and graph required"},{status:400}); const result=await executeWorkflowGraph({companyId:body.company_id,workflowId:body.workflow_id,graph:body.graph,input:body.input||{}}); return NextResponse.json({ok:true,result});}catch(error:any){return NextResponse.json({ok:false,error:error.message},{status:500});}}

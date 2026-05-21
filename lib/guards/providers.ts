@@ -1,13 +1,21 @@
 export function envReady(name: string) {
   const value = process.env[name];
-  return !!value && value.trim() !== "" && value !== "pending" && value !== "placeholder";
+
+  return (
+    !!value &&
+    value.trim() !== "" &&
+    value !== "pending" &&
+    value !== "placeholder"
+  );
 }
 
 export function getProviderStatus() {
   return {
     openai: envReady("OPENAI_API_KEY"),
     stripe: envReady("STRIPE_SECRET_KEY"),
-    razorpay: envReady("RAZORPAY_KEY_ID") && envReady("RAZORPAY_KEY_SECRET"),
+    razorpay:
+      envReady("RAZORPAY_KEY_ID") &&
+      envReady("RAZORPAY_KEY_SECRET"),
     composio: envReady("COMPOSIO_API_KEY"),
     supabase:
       envReady("NEXT_PUBLIC_SUPABASE_URL") &&
@@ -16,12 +24,23 @@ export function getProviderStatus() {
   };
 }
 
-export function requireProvider(provider: "openai" | "stripe" | "razorpay" | "composio") {
-  const status = getProviderStatus();
+export function requireProvider(provider: string) {
+  const providers = getProviderStatus();
 
-  if (!status[provider]) {
+  const exists =
+    provider === "openai"
+      ? providers.openai
+      : provider === "stripe"
+      ? providers.stripe
+      : provider === "razorpay"
+      ? providers.razorpay
+      : provider === "composio"
+      ? providers.composio
+      : false;
+
+  if (!exists) {
     throw new Error(
-      `${provider.toUpperCase()} is not configured yet. This action is disabled until the platform owner adds the required keys.`
+      `${provider.toUpperCase()} provider is not configured.`
     );
   }
 
