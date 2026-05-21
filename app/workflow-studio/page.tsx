@@ -1,36 +1,76 @@
 import AppShell from "@/components/layout/AppShell";
 
-export default function WorkflowStudioPage() {
+export default function Page() {
   return (
-    <AppShell>
-      <section className="p-6 lg:p-10">
-        <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr]">
-          <div className="rounded-[36px] bg-white p-8 shadow-sm">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-600">Builder</p>
-            <h1 className="mt-4 text-5xl font-black tracking-[-0.07em]">Workflow Studio</h1>
-            <p className="mt-5 text-slate-500 leading-8">Design task chains, approvals, model calls, memory lookups and tool actions.</p>
-            <button className="mt-8 rounded-full bg-slate-950 px-7 py-4 font-bold text-white">New Workflow</button>
-          </div>
+    <AppShell
+      title="workflow studio"
+      subtitle="UNIC.ai workspace module"
+    >
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_20px_80px_rgba(15,23,42,.05)]">
+          <div className="mb-7 h-32 rounded-[24px] bg-gradient-to-br from-[#eef4ff] via-white to-[#ecfeff]" />
 
-          <div className="relative min-h-[560px] rounded-[36px] border border-slate-200 bg-white p-8 shadow-sm">
-            <svg className="absolute inset-0 h-full w-full">
-              <line x1="150" y1="150" x2="420" y2="240" stroke="#2563eb" strokeWidth="3" strokeDasharray="8 8" />
-              <line x1="420" y1="240" x2="680" y2="150" stroke="#10b981" strokeWidth="3" strokeDasharray="8 8" />
-            </svg>
+          <h2 className="text-3xl font-black tracking-[-0.05em] capitalize">
+            workflow studio
+          </h2>
+
+          <p className="mt-4 text-slate-500 leading-8">
+            Manage and monitor this workspace module from one unified operating layer.
+          </p>
+
+          <button className="mt-8 rounded-full bg-[#111827] px-6 py-4 text-sm font-bold text-white">
+            Open Module
+          </button>
+        </div>
+
+        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_20px_80px_rgba(15,23,42,.05)]">
+          <h2 className="text-3xl font-black tracking-[-0.05em]">
+            Activity
+          </h2>
+
+          <div className="mt-7 space-y-4">
             {[
-              ["Trigger", "User command", 60, 90],
-              ["Agent", "Research worker", 330, 180],
-              ["Tool", "Gmail draft", 610, 90],
-              ["Approval", "Human review", 330, 360]
-            ].map(([a,b,x,y]) => (
-              <div key={a} style={{left:x as number, top:y as number}} className="absolute w-56 rounded-[28px] border border-slate-200 bg-white p-5 shadow-xl">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-blue-600">{a}</p>
-                <h3 className="mt-2 text-xl font-black">{b}</h3>
+              "Workspace updated",
+              "Execution completed",
+              "Connector synchronized",
+              "Approval reviewed",
+              "Memory indexed"
+            ].map((x) => (
+              <div
+                key={x}
+                className="rounded-2xl border border-slate-200 p-5"
+              >
+                <p className="font-semibold text-slate-700">
+                  {x}
+                </p>
               </div>
             ))}
           </div>
         </div>
-      </section>
+
+        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_20px_80px_rgba(15,23,42,.05)]">
+          <h2 className="text-3xl font-black tracking-[-0.05em]">
+            Quick Actions
+          </h2>
+
+          <div className="mt-7 grid gap-4">
+            {[
+              "Create",
+              "Configure",
+              "Connect",
+              "Monitor",
+              "Manage"
+            ].map((x) => (
+              <button
+                key={x}
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5 text-left text-sm font-bold text-slate-700 hover:bg-slate-100"
+              >
+                {x}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
     </AppShell>
   );
 }
