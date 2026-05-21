@@ -1,50 +1,76 @@
-"use client";
+import AppShell from "@/components/layout/AppShell";
 
-import { useEffect, useState } from "react";
-
-export default function NotificationsCenterPage() {
-  const [notifications, setNotifications] = useState<any[]>([]);
-
-  useEffect(() => {
-    async function load() {
-      const res = await fetch("/api/fetch-notifications");
-      const data = await res.json();
-      setNotifications(data.notifications || []);
-    }
-
-    load();
-  }, []);
-
+export default function Page() {
   return (
-    <main className="page-shell">
-      <section className="main">
-        <h1 className="page-title">
-          Notifications
-        </h1>
+    <AppShell
+      title="notifications center"
+      subtitle="UNIC.ai workspace module"
+    >
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_20px_80px_rgba(15,23,42,.05)]">
+          <div className="mb-7 h-32 rounded-[24px] bg-gradient-to-br from-[#eef4ff] via-white to-[#ecfeff]" />
 
-        <div className="space-y-4 mt-10">
-          {notifications.map((n) => (
-            <div
-              key={n.id}
-              className="glass-card p-5"
-            >
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-black">
-                  {n.title}
-                </h2>
+          <h2 className="text-3xl font-black tracking-[-0.05em] capitalize">
+            notifications center
+          </h2>
 
-                <span className="text-xs text-gray-400">
-                  {n.severity}
-                </span>
-              </div>
+          <p className="mt-4 text-slate-500 leading-8">
+            Manage and monitor this workspace module from one unified operating layer.
+          </p>
 
-              <p className="text-gray-500 mt-3">
-                {n.message}
-              </p>
-            </div>
-          ))}
+          <button className="mt-8 rounded-full bg-[#111827] px-6 py-4 text-sm font-bold text-white">
+            Open Module
+          </button>
         </div>
-      </section>
-    </main>
+
+        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_20px_80px_rgba(15,23,42,.05)]">
+          <h2 className="text-3xl font-black tracking-[-0.05em]">
+            Activity
+          </h2>
+
+          <div className="mt-7 space-y-4">
+            {[
+              "Workspace updated",
+              "Execution completed",
+              "Connector synchronized",
+              "Approval reviewed",
+              "Memory indexed"
+            ].map((x) => (
+              <div
+                key={x}
+                className="rounded-2xl border border-slate-200 p-5"
+              >
+                <p className="font-semibold text-slate-700">
+                  {x}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_20px_80px_rgba(15,23,42,.05)]">
+          <h2 className="text-3xl font-black tracking-[-0.05em]">
+            Quick Actions
+          </h2>
+
+          <div className="mt-7 grid gap-4">
+            {[
+              "Create",
+              "Configure",
+              "Connect",
+              "Monitor",
+              "Manage"
+            ].map((x) => (
+              <button
+                key={x}
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5 text-left text-sm font-bold text-slate-700 hover:bg-slate-100"
+              >
+                {x}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </AppShell>
   );
 }
