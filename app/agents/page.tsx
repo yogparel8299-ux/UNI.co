@@ -1,18 +1,24 @@
-import AppShell from "@/components/layout/AppShell";
-import Empty from "@/components/ui/Empty";
+import Shell from "@/components/Shell";
+import Card from "@/components/Card";
+import DataTable from "@/components/DataTable";
+import { supabaseAdmin } from "@/lib/supabase-admin";
 
-export default function AgentsPage() {
+export default async function Page() {
+  const { data, count } = await supabaseAdmin
+    .from("agents")
+    .select("*", { count: "exact" })
+    .order("created_at", { ascending: false })
+    .limit(50);
+
   return (
-    <AppShell
-      title="Agents"
-      subtitle="Create AI workers with connected skills and tools."
-    >
-      <Empty
-        title="No agents yet"
-        text="Create your first AI worker and assign skills, memory, workflows and connected tools."
-        action="Create Agent"
-        href="/builder"
-      />
-    </AppShell>
+    <Shell title="Agents">
+      <div className="grid grid-cols-3 gap-6 mb-8">
+        <Card title="Total Records" value={count || 0} />
+        <Card title="Database Table" value="agents" />
+        <Card title="Status" value="Live" />
+      </div>
+
+      <DataTable rows={data || []} />
+    </Shell>
   );
 }

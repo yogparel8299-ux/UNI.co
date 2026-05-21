@@ -1,51 +1,82 @@
-import AppShell from "@/components/layout/AppShell";
-import StatCard from "@/components/ui/StatCard";
+import Shell from "@/components/Shell";
+import { supabaseAdmin } from "@/lib/supabase-admin";
 
-export default function BillingCenterPage() {
+export default async function BillingCenterPage() {
+  const { data: plans } = await supabaseAdmin
+    .from("platform_pricing_plans")
+    .select("*")
+    .order("monthly_price");
+
+  const { data: packs } = await supabaseAdmin
+    .from("credit_packs")
+    .select("*")
+    .eq("active", true)
+    .order("price");
+
   return (
-    <AppShell
-      title="Billing"
-      subtitle="Manage plans, credits and workspace billing."
+    <Shell
+      title="Billing Center"
+      subtitle="Affordable plans, credit packs and user-paid model routing."
     >
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        <StatCard
-          title="Current Plan"
-          value="Builder"
-          subtitle="Monthly subscription"
-        />
+      <h2 className="text-3xl font-black tracking-[-0.04em] mb-6">
+        Plans
+      </h2>
 
-        <StatCard
-          title="Credits"
-          value="124k"
-          subtitle="Available platform credits"
-        />
+      <div className="grid grid-cols-4 gap-6 mb-12">
+        {(plans || []).map((plan) => (
+          <div key={plan.id} className="glass-card p-6">
+            <h3 className="text-2xl font-black">
+              {plan.name}
+            </h3>
 
-        <StatCard
-          title="Usage"
-          value="42%"
-          subtitle="Current billing cycle"
-        />
+            <p className="text-4xl font-black mt-4">
+              ${plan.monthly_price}
+            </p>
+
+            <p className="text-gray-500 mt-4">
+              {plan.included_credits} credits included
+            </p>
+
+            <p className="text-green-600 font-bold mt-4">
+              {plan.ownership_model}
+            </p>
+
+            <button className="primary-button mt-6">
+              Choose Plan
+            </button>
+          </div>
+        ))}
       </div>
 
-      <div className="mt-7 rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_20px_80px_rgba(15,23,42,.05)]">
-        <h2 className="text-4xl font-black tracking-[-0.05em]">
-          Credit management
-        </h2>
+      <h2 className="text-3xl font-black tracking-[-0.04em] mb-6">
+        Credit Packs
+      </h2>
 
-        <p className="mt-4 max-w-3xl text-slate-500 leading-8">
-          Monitor platform usage, purchase additional credits and manage model access for workspace execution.
-        </p>
+      <div className="grid grid-cols-4 gap-6">
+        {(packs || []).map((pack) => (
+          <div key={pack.id} className="glass-card p-6">
+            <h3 className="text-2xl font-black">
+              {pack.name}
+            </h3>
 
-        <div className="mt-8 flex flex-wrap gap-4">
-          <button className="rounded-full bg-[#111827] px-7 py-4 text-sm font-bold text-white">
-            Buy Credits
-          </button>
+            <p className="text-4xl font-black mt-4">
+              ${pack.price}
+            </p>
 
-          <button className="rounded-full border border-slate-200 bg-white px-7 py-4 text-sm font-bold text-slate-700">
-            Change Plan
-          </button>
-        </div>
+            <p className="text-gray-500 mt-4">
+              {pack.credits} credits
+            </p>
+
+            <p className="text-green-600 font-bold mt-2">
+              +{pack.bonus_credits} bonus
+            </p>
+
+            <button className="primary-button mt-6">
+              Buy Credits
+            </button>
+          </div>
+        ))}
       </div>
-    </AppShell>
+    </Shell>
   );
 }
