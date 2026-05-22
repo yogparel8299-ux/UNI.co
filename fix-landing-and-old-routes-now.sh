@@ -1,3 +1,9 @@
+#!/bin/bash
+set -e
+
+echo "Fixing landing page and redirecting old unused routes..."
+
+cat > app/page.tsx <<'TSX'
 import Link from "next/link";
 
 const features = [
@@ -106,3 +112,30 @@ export default function HomePage() {
     </main>
   );
 }
+TSX
+
+# Redirect unused/old public routes so they do not show random old pages.
+OLD_ROUTES=(
+about contact security auth command connectors integrations
+marketplace-explore marketplace-seller seller-dashboard
+admin-analytics admin-console admin/security
+brain-search dataset-lab final-onboarding mcp-gateway models
+notifications notifications-center ownership packs rag realtime realtime-live realtime-stream
+rollback-center router secret-manager swarm-visualizer triggers usage-dashboard vault worker-health billing-center
+)
+
+for route in "${OLD_ROUTES[@]}"; do
+  mkdir -p "app/$route"
+  cat > "app/$route/page.tsx" <<'TSX'
+import { redirect } from "next/navigation";
+
+export default function Page() {
+  redirect("/login");
+}
+TSX
+done
+
+npm run build
+git add .
+git commit -m "Fix premium landing and redirect unused old routes" || true
+git push origin main

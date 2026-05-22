@@ -1,1 +1,5 @@
-export { default } from "../billing/page";
+import { redirect } from "next/navigation";
+
+export default function Page() {
+  redirect("/login");
+}

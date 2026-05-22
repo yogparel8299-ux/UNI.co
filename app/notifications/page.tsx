@@ -1,8 +1,5 @@
-import Shell from "@/components/Shell";
-import DataTable from "@/components/DataTable";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { redirect } from "next/navigation";
 
-export default async function Notifications() {
-  const { data } = await supabaseAdmin.from("notifications").select("*").order("created_at", { ascending: false }).limit(100);
-  return <Shell title="Notifications" subtitle="System alerts, workflow updates, billing notices and agent events."><DataTable rows={data || []} /></Shell>;
+export default function Page() {
+  redirect("/login");
 }
