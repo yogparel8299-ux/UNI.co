@@ -1,3 +1,13 @@
+#!/bin/bash
+set -e
+
+echo "Removing wrong Stitch iframe build..."
+
+# Remove iframe static previews
+rm -rf public/stitch
+
+# Restore root landing route placeholder so app works normally again
+cat > app/page.tsx <<'TSX'
 import Link from "next/link";
 
 export default function HomePage() {
@@ -25,3 +35,20 @@ export default function HomePage() {
     </main>
   );
 }
+TSX
+
+# Remove iframe wrappers that point to deleted public/stitch
+for route in dashboard login signup agents workflow-studio swarms datasets marketplace billing connection-layer approvals activity settings tasks brain; do
+  if grep -R "src=\"/stitch/" "app/$route/page.tsx" >/dev/null 2>&1; then
+    echo "Removing iframe page app/$route/page.tsx"
+    rm -f "app/$route/page.tsx"
+  fi
+done
+
+npm run build
+
+git add .
+git commit -m "Remove wrong Stitch iframe build" || true
+git push origin main
+
+echo "DONE. Wrong iframe build removed."
