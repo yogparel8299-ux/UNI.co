@@ -1,0 +1,470 @@
+<!-- Settings | UNIC.ai -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UNIC.ai | Enterprise Workspace Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            background: rgba(16, 32, 52, 0.6);
+            border: 0.5px solid rgba(69, 71, 75, 0.3);
+        }
+        .cyber-border-top {
+            border-top: 0.5px solid #2fd9f4;
+        }
+        input:focus {
+            box-shadow: 0 0 10px rgba(47, 217, 244, 0.2);
+            outline: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #000f21;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #45474b;
+            border-radius: 2px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#2fd9f4",
+                        "surface-container-low": "#0b1c30",
+                        "secondary": "#c0c1ff",
+                        "inverse-surface": "#d3e4fe",
+                        "inverse-primary": "#5d5e63",
+                        "inverse-on-surface": "#213145",
+                        "on-tertiary-fixed-variant": "#004e5a",
+                        "on-background": "#d3e4fe",
+                        "on-tertiary-container": "#008699",
+                        "surface-variant": "#26364a",
+                        "surface": "#031427",
+                        "surface-container-lowest": "#000f21",
+                        "secondary-container": "#3131c0",
+                        "outline": "#909095",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "primary-fixed-dim": "#c6c6cc",
+                        "tertiary-fixed": "#a2eeff",
+                        "on-primary-fixed-variant": "#45474b",
+                        "primary": "#c6c6cc",
+                        "outline-variant": "#45474b",
+                        "surface-tint": "#c6c6cc",
+                        "surface-bright": "#2a3a4f",
+                        "on-primary-fixed": "#1a1c20",
+                        "primary-container": "#0a0c10",
+                        "background": "#031427",
+                        "tertiary-container": "#000e12",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "primary-fixed": "#e2e2e8",
+                        "tertiary": "#2fd9f4",
+                        "on-secondary-container": "#b0b2ff",
+                        "on-tertiary-fixed": "#001f25",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-secondary-fixed": "#07006c",
+                        "on-primary": "#2f3035",
+                        "surface-container-high": "#1b2b3f",
+                        "on-secondary": "#1000a9",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#d3e4fe",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "surface-container": "#102034",
+                        "on-surface-variant": "#c6c6cb",
+                        "surface-container-highest": "#26364a",
+                        "on-tertiary": "#00363e",
+                        "on-error": "#690005",
+                        "surface-dim": "#031427",
+                        "on-surface-variant": "#c6c6cb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "margin-desktop": "64px",
+                        "gutter": "20px",
+                        "base": "4px",
+                        "xl": "48px",
+                        "xs": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden flex h-screen">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col py-lg hidden md:flex">
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 bg-tertiary rounded-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-surface font-bold">hub</span>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black text-on-surface tracking-tighter">UNIC.ai</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Enterprise OS</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex items-center gap-md bg-secondary-container/20 text-tertiary border-r-2 border-tertiary px-lg py-sm transition-all translate-x-1 duration-200">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+<span class="font-label-sm text-label-sm">Studio</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-sm text-label-sm">Agents</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="group_work">group_work</span>
+<span class="font-label-sm text-label-sm">Swarms</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-label-sm text-label-sm">Datasets</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="memory">memory</span>
+<span class="font-label-sm text-label-sm">Compute</span>
+</div>
+</nav>
+<div class="px-lg mt-auto pt-lg border-t border-outline-variant/20 space-y-4">
+<button class="w-full bg-secondary text-on-secondary font-label-sm text-label-sm py-sm rounded-sm hover:opacity-90 transition-all uppercase tracking-widest font-bold">
+                New Runtime
+            </button>
+<div class="space-y-1">
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-sm text-label-sm">Documentation</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col h-full bg-background relative">
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="fixed top-0 right-0 left-0 md:left-64 h-16 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 z-30 flex justify-between items-center px-margin-desktop shadow-lg shadow-surface-container-lowest/50">
+<div class="flex items-center gap-xl">
+<div class="flex gap-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 cursor-pointer">Workspace</span>
+<span class="font-label-sm text-label-sm text-tertiary border-b border-tertiary font-bold px-2 cursor-pointer">Configuration</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 cursor-pointer">Governance</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-body-md hover:bg-surface-container-highest/20 p-sm rounded transition-all" data-icon="terminal">terminal</span>
+<span class="material-symbols-outlined text-on-surface-variant text-body-md hover:bg-surface-container-highest/20 p-sm rounded transition-all" data-icon="notifications">notifications</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-sm"></div>
+<div class="flex items-center gap-sm bg-surface-container px-sm py-1 rounded-sm border border-outline-variant/30">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Credits:</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">14,290</span>
+</div>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-outline-variant/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTbbnrlqoHMPVfri3Xtt6D6WvVMjhq7U9RjK9nTtW7sAz3Ix0SL1LeppnRn_-cOMXv9WtHe0pOfcSxCLqcoP2uXZmLWL2uRv-jSN4IamOQFLhnWD3a518PsQa9p1P-Wrg_IFos0utbwQXyxpq45ICTB4hFddquwivjw72QdBipSS6qUzI_8zBygC3HKHuMT6zrWtYcYRm0G4N8dUhrbzh-yRwqVt3B8VK7B8MDY_fyyZjNuLZDVR65yvYc8lG2VKZfBfBkAxdyh1A"/>
+</div>
+</header>
+<!-- Configuration Content Canvas -->
+<section class="flex-1 mt-16 overflow-y-auto custom-scrollbar p-margin-desktop">
+<div class="max-w-6xl mx-auto space-y-xl">
+<!-- Hero Header -->
+<div class="space-y-sm">
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">Workspace Configuration</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                        Manage global parameters for your enterprise AI environment, including security hardening, compute allocation, and brand identity.
+                    </p>
+</div>
+<!-- Bento Grid Sections -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Workspace Branding -->
+<div class="col-span-12 lg:col-span-7 glass-panel p-lg rounded-xl flex flex-col gap-md cyber-border-top">
+<div class="flex justify-between items-center">
+<h3 class="font-label-sm text-label-sm text-tertiary uppercase tracking-widest font-bold">Workspace Branding</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="palette">palette</span>
+</div>
+<div class="grid grid-cols-2 gap-lg mt-md">
+<div class="space-y-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant">DISPLAY NAME</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-sm text-on-surface font-body-md p-sm" type="text" value="Hyperion Research Labs"/>
+</div>
+<div class="space-y-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant">UNIQUE ID</label>
+<input class="w-full bg-surface-container border border-outline-variant/10 rounded-sm text-on-surface-variant font-mono-code p-sm opacity-60" readonly="" type="text" value="unic-hyperion-01"/>
+</div>
+</div>
+<div class="flex items-center gap-lg mt-md p-md bg-surface-container-lowest/50 rounded-sm border border-outline-variant/20">
+<div class="w-16 h-16 bg-surface-container-highest rounded flex items-center justify-center border border-outline-variant/30 relative group cursor-pointer overflow-hidden">
+<img alt="Workspace Logo" class="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQI0OIXMDEJ-KrZV_nZhu309-CoRZt4ZRJiUOafvJ9s2_WZu0ZFsBapC1b0DLw3PVJU6gbG8q3NoptZ6hPBpltUCXA5wVa8fEoTCoP38unVajQgb2aTjB7Cvi4xBImzErKCAPFlCQnk1SZWaXLCjGVDfV1EU-mcgCC5e3hNpDXJyt2NSeLty1-YCLhC4dvBNyWXXzVj9-y6kIgaTqin5iqDRPEpiUI3jpO9bdk1zdZA139e5fPVkJfqmmyDzWgGVjHVUzsYv9V0iU"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="edit">edit</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-on-surface">Workspace Avatar</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">PNG or SVG, max 2MB. Recommended 512x512px.</p>
+<button class="text-tertiary font-label-sm text-label-sm hover:underline mt-2">Upload new asset</button>
+</div>
+</div>
+</div>
+<!-- API Access & Tokens -->
+<div class="col-span-12 lg:col-span-5 glass-panel p-lg rounded-xl flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h3 class="font-label-sm text-label-sm text-tertiary uppercase tracking-widest font-bold">API Keys</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="key">key</span>
+</div>
+<div class="space-y-md mt-md">
+<div class="p-sm bg-surface-container-lowest border border-outline-variant/30 rounded-sm flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Production_Main</span>
+<span class="font-mono-code text-[12px] text-on-surface-variant">sk_live_••••••••••••••••3a9c</span>
+</div>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-tertiary" data-icon="visibility">visibility</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-tertiary" data-icon="content_copy">content_copy</span>
+</div>
+</div>
+<div class="p-sm bg-surface-container-lowest border border-outline-variant/30 rounded-sm flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Staging_Test</span>
+<span class="font-mono-code text-[12px] text-on-surface-variant">sk_test_••••••••••••••••f291</span>
+</div>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-tertiary" data-icon="visibility">visibility</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-tertiary" data-icon="content_copy">content_copy</span>
+</div>
+</div>
+</div>
+<button class="w-full border border-tertiary text-tertiary font-label-sm text-label-sm py-sm rounded-sm hover:bg-tertiary/10 transition-all mt-auto">
+                            Generate New Key
+                        </button>
+</div>
+<!-- Runtime & Resource Limits -->
+<div class="col-span-12 lg:col-span-8 glass-panel p-lg rounded-xl flex flex-col gap-md cyber-border-top">
+<div class="flex justify-between items-center">
+<h3 class="font-label-sm text-label-sm text-tertiary uppercase tracking-widest font-bold">Runtime Compute Limits</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="memory">memory</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-md">
+<div class="p-md bg-surface-container-lowest rounded-sm border border-outline-variant/20 space-y-md">
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>CONCURRENCY</span>
+<span class="text-tertiary">85%</span>
+</div>
+<div class="h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[85%]"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Max concurrent agent instances: 120</p>
+</div>
+<div class="p-md bg-surface-container-lowest rounded-sm border border-outline-variant/20 space-y-md">
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>VRAM ALLOCATION</span>
+<span class="text-secondary">42%</span>
+</div>
+<div class="h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[42%]"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Active GPU Clusters: A100-NODE-4</p>
+</div>
+<div class="p-md bg-surface-container-lowest rounded-sm border border-outline-variant/20 space-y-md">
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>TOKENS / SEC</span>
+<span class="text-on-surface">12.5k</span>
+</div>
+<div class="h-1 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-on-surface w-[65%]"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Global throughput limit</p>
+</div>
+</div>
+</div>
+<!-- Security Protocols -->
+<div class="col-span-12 lg:col-span-4 glass-panel p-lg rounded-xl flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h3 class="font-label-sm text-label-sm text-tertiary uppercase tracking-widest font-bold">Security Protocols</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="shield">shield</span>
+</div>
+<div class="space-y-lg mt-md">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">SSO Enforcement</p>
+<p class="text-[11px] text-on-surface-variant">Require Okta/Azure login</p>
+</div>
+<div class="w-10 h-5 bg-tertiary/20 border border-tertiary/50 rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 w-3.5 h-3.5 bg-tertiary rounded-full shadow-lg shadow-tertiary/50"></div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">PII Redaction</p>
+<p class="text-[11px] text-on-surface-variant">Auto-filter sensitive data</p>
+</div>
+<div class="w-10 h-5 bg-surface-variant border border-outline-variant rounded-full relative cursor-pointer">
+<div class="absolute left-0.5 top-0.5 w-3.5 h-3.5 bg-outline rounded-full"></div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">Session Expiry</p>
+<p class="text-[11px] text-on-surface-variant">Auto-logout after 4h</p>
+</div>
+<div class="w-10 h-5 bg-tertiary/20 border border-tertiary/50 rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 w-3.5 h-3.5 bg-tertiary rounded-full shadow-lg shadow-tertiary/50"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Preferences -->
+<div class="col-span-12 glass-panel p-lg rounded-xl flex flex-col gap-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center">
+<h3 class="font-label-sm text-label-sm text-tertiary uppercase tracking-widest font-bold">Notification Matrix</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="tune">tune</span>
+</div>
+<div class="overflow-x-auto mt-md">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-outline-variant/10">
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant">EVENT TYPE</th>
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant">IN-APP</th>
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant">EMAIL</th>
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant">SLACK/WEBHOOK</th>
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant">URGENCY</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-highest/20 transition-colors">
+<td class="py-md font-label-sm text-label-sm text-on-surface">Compute Limit Reached</td>
+<td class="py-md"><span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_box</span></td>
+<td class="py-md"><span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_box</span></td>
+<td class="py-md"><span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_box</span></td>
+<td class="py-md"><span class="px-2 py-0.5 bg-error-container/20 text-error text-[10px] rounded uppercase font-bold border border-error/30">Critical</span></td>
+</tr>
+<tr class="hover:bg-surface-container-highest/20 transition-colors">
+<td class="py-md font-label-sm text-label-sm text-on-surface">Agent Deployment Success</td>
+<td class="py-md"><span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_box</span></td>
+<td class="py-md"><span class="material-symbols-outlined text-outline-variant">check_box_outline_blank</span></td>
+<td class="py-md"><span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_box</span></td>
+<td class="py-md"><span class="px-2 py-0.5 bg-secondary-container/20 text-secondary text-[10px] rounded uppercase font-bold border border-secondary/30">Low</span></td>
+</tr>
+<tr class="hover:bg-surface-container-highest/20 transition-colors">
+<td class="py-md font-label-sm text-label-sm text-on-surface">Billing Threshold (80%)</td>
+<td class="py-md"><span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_box</span></td>
+<td class="py-md"><span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_box</span></td>
+<td class="py-md"><span class="material-symbols-outlined text-outline-variant">check_box_outline_blank</span></td>
+<td class="py-md"><span class="px-2 py-0.5 bg-tertiary/10 text-tertiary text-[10px] rounded uppercase font-bold border border-tertiary/30">Medium</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer (Authority Source: JSON) -->
+<footer class="w-full py-xl mt-xl border-t border-outline-variant/20">
+<div class="max-w-7xl mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-xl">
+<div class="col-span-1 md:col-span-2">
+<h2 class="font-display-lg text-display-lg font-bold text-on-surface mb-lg tracking-tighter">UNIC.ai</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
+                            © 2024 UNIC.ai. Operating System for AI Companies. Optimized for high-frequency infrastructure management.
+                        </p>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface font-bold mb-md uppercase tracking-widest">Platform</h4>
+<ul class="space-y-sm">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4" href="/dashboard">Marketplace</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4" href="/dashboard">Workflows</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4" href="/dashboard">Safety Protocols</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface font-bold mb-md uppercase tracking-widest">Developer</h4>
+<ul class="space-y-sm">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4" href="/dashboard">API Docs</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4" href="/dashboard">Company</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4" href="/dashboard">Resources</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</section>
+</main>
+<!-- Global FAB Overlay -->
+<div class="fixed bottom-lg right-lg z-50 flex flex-col gap-md">
+<button class="w-14 h-14 bg-tertiary rounded-full shadow-2xl shadow-tertiary/40 flex items-center justify-center text-surface active:scale-95 transition-all group overflow-hidden">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform duration-300" data-icon="sync">sync</span>
+<div class="absolute -top-12 bg-surface text-tertiary font-label-sm text-label-sm px-md py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                Sync Changes
+            </div>
+</button>
+</div>
+<script>
+        // Micro-interactions for input focus
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('border-tertiary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('border-tertiary');
+            });
+        });
+
+        // Toggle interaction simulation
+        const toggles = document.querySelectorAll('.w-10.h-5');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const knob = toggle.querySelector('div');
+                const isActive = toggle.classList.contains('bg-tertiary/20');
+                
+                if(isActive) {
+                    toggle.classList.remove('bg-tertiary/20', 'border-tertiary/50');
+                    toggle.classList.add('bg-surface-variant', 'border-outline-variant');
+                    knob.classList.remove('right-0.5', 'bg-tertiary', 'shadow-tertiary/50');
+                    knob.classList.add('left-0.5', 'bg-outline');
+                } else {
+                    toggle.classList.add('bg-tertiary/20', 'border-tertiary/50');
+                    toggle.classList.remove('bg-surface-variant', 'border-outline-variant');
+                    knob.classList.add('right-0.5', 'bg-tertiary', 'shadow-tertiary/50');
+                    knob.classList.remove('left-0.5', 'bg-outline');
+                }
+            });
+        });
+    </script>
+</body></html>
+

@@ -1,4 +1,9 @@
-"use client";
-import {useState} from "react"; import AppShell from "@/components/unic/AppShell"; import {createBrowserClient} from "@supabase/ssr";
-const toolkits=[["gmail","Gmail"],["slack","Slack"],["notion","Notion"],["github","GitHub"],["googledrive","Google Drive"],["googlecalendar","Google Calendar"],["discord","Discord"]];
-export default function ConnectionLayerPage(){const[msg,setMsg]=useState(""); async function connect(toolkit:string){setMsg(`Starting ${toolkit} connection...`); const supabase=createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL||"",process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY||""); const {data:{user}}=await supabase.auth.getUser(); if(!user){window.location.href="/login";return;} const res=await fetch("/api/composio-auth-link",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({user_id:user.id,toolkit})}); const json=await res.json(); if(!json.ok||!json.redirect_url){setMsg(json.error||"Could not create connection link.");return;} window.location.href=json.redirect_url;} return <AppShell title="Connection Layer" subtitle="Connect business tools through Composio OAuth.">{msg&&<p className="mb-5 rounded-xl bg-neutral-100 p-3 text-sm font-bold text-neutral-700">{msg}</p>}<div className="grid gap-4 md:grid-cols-3">{toolkits.map(([id,label])=><div key={id} className="rounded-2xl border border-neutral-200 bg-white p-6"><h2 className="text-2xl font-black">{label}</h2><p className="mt-3 text-sm text-neutral-500">Connect this app so agents can use it as a tool.</p><button onClick={()=>connect(id)} className="mt-5 rounded-xl bg-black px-5 py-3 text-sm font-bold text-white">Connect {label}</button></div>)}</div></AppShell>}
+export default function Page() {
+  return (
+    <iframe
+      src="/stitch/connection-layer.html"
+      className="h-screen w-full border-0"
+      style={{ background: "#031427" }}
+    />
+  );
+}

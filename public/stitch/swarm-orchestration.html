@@ -1,0 +1,494 @@
+<!-- Swarms | UNIC.ai -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UNIC.ai | Swarm Orchestration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(10, 12, 16, 0.7);
+            backdrop-filter: blur(12px);
+            border: 0.5px solid rgba(30, 41, 59, 0.5);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 15px -3px rgba(47, 217, 244, 0.3);
+        }
+        .swarm-node-active {
+            animation: pulse-border 2s infinite ease-in-out;
+        }
+        @keyframes pulse-border {
+            0%, 100% { border-color: rgba(47, 217, 244, 0.3); }
+            50% { border-color: rgba(47, 217, 244, 1); }
+        }
+        .connector-line {
+            background: linear-gradient(90deg, transparent, #2fd9f4, transparent);
+            background-size: 200% 100%;
+            animation: move-gradient 3s linear infinite;
+        }
+        @keyframes move-gradient {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-secondary-container": "#b0b2ff",
+                "tertiary-container": "#000e12",
+                "on-tertiary-container": "#008699",
+                "surface-container-lowest": "#000f21",
+                "on-tertiary": "#00363e",
+                "on-surface": "#d3e4fe",
+                "surface-container-low": "#0b1c30",
+                "on-error-container": "#ffdad6",
+                "surface-bright": "#2a3a4f",
+                "secondary-fixed-dim": "#c0c1ff",
+                "tertiary-fixed-dim": "#2fd9f4",
+                "surface-container-highest": "#26364a",
+                "outline": "#909095",
+                "on-tertiary-fixed": "#001f25",
+                "inverse-primary": "#5d5e63",
+                "secondary-fixed": "#e1e0ff",
+                "background": "#031427",
+                "primary-fixed-dim": "#c6c6cc",
+                "outline-variant": "#45474b",
+                "error-container": "#93000a",
+                "surface-dim": "#031427",
+                "on-secondary-fixed": "#07006c",
+                "surface-container": "#102034",
+                "secondary": "#c0c1ff",
+                "secondary-container": "#3131c0",
+                "inverse-on-surface": "#213145",
+                "on-primary-fixed": "#1a1c20",
+                "surface-tint": "#c6c6cc",
+                "surface": "#031427",
+                "on-secondary": "#1000a9",
+                "primary-fixed": "#e2e2e8",
+                "on-secondary-fixed-variant": "#2f2ebe",
+                "surface-variant": "#26364a",
+                "on-error": "#690005",
+                "on-tertiary-fixed-variant": "#004e5a",
+                "on-primary-fixed-variant": "#45474b",
+                "tertiary-fixed": "#a2eeff",
+                "primary-container": "#0a0c10",
+                "on-primary": "#2f3035",
+                "on-surface-variant": "#c6c6cb",
+                "inverse-surface": "#d3e4fe",
+                "tertiary": "#2fd9f4",
+                "error": "#ffb4ab",
+                "primary": "#c6c6cc",
+                "on-background": "#d3e4fe",
+                "surface-container-high": "#1b2b3f",
+                "on-primary-container": "#797a7f"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              },
+              "spacing": {
+                "margin-mobile": "16px",
+                "xl": "48px",
+                "gutter": "20px",
+                "xs": "4px",
+                "lg": "24px",
+                "base": "4px",
+                "margin-desktop": "64px",
+                "sm": "8px",
+                "md": "16px"
+              },
+              "fontFamily": {
+                "headline-lg": ["Inter"],
+                "display-xl": ["Inter"],
+                "body-md": ["Inter"],
+                "display-lg": ["Inter"],
+                "mono-code": ["Geist"],
+                "headline-lg-mobile": ["Inter"],
+                "label-sm": ["Geist"]
+              },
+              "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                "mono-code": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-lg shadow-surface-container-lowest/50 flex justify-between items-center px-margin-desktop h-16">
+<div class="flex items-center gap-xl">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tighter">UNIC.ai</span>
+<nav class="hidden md:flex items-center gap-md">
+<a class="text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 font-label-sm text-label-sm" href="/dashboard">Studio</a>
+<a class="text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 font-label-sm text-label-sm" href="/dashboard">Agents</a>
+<a class="text-tertiary border-b border-tertiary font-bold px-2 font-label-sm text-label-sm" href="/dashboard">Swarms</a>
+<a class="text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 font-label-sm text-label-sm" href="/dashboard">Infrastructure</a>
+<a class="text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 font-label-sm text-label-sm" href="/dashboard">Safety</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex items-center gap-sm px-md py-xs bg-surface-container-high rounded-full border border-outline-variant/30">
+<span class="material-symbols-outlined text-tertiary text-[18px]">terminal</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Runtime: Active</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-highest/20 p-sm rounded-full transition-all">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-highest/20 p-sm rounded-full transition-all">settings</button>
+<button class="bg-secondary-container text-on-secondary-container px-lg py-xs rounded font-label-sm text-label-sm font-bold active:scale-95 duration-150">Execute</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/50">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3je0GCOA-ZAumqE4f64hywVqMl2NwSMrZ3Xonw6lehBGoV1LUX5Bta-oGDFlA2pk6bNOfeOPdMhcOOP2bbVVf_8PVwFGPf0FQ8u2omGqgu-AQ4vg5NjX_NFRKh4BhROIIJSVc3_28pEw4722QNA1zb5DatiSnz7NGceZWuNVY3EvArYIDYQnwSU3XL_qrQ5WcozloTNQuEsCl9KOkuKVV_X4TIkG34GyY9QryK8cOZ2kfJdflBYyTrPUcy1u_6oYnneFYEHodNmY"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant/30 hidden md:flex flex-col py-lg mt-16">
+<div class="px-lg mb-xl">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-black text-on-surface">Enterprise OS</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-60">System Version 4.2.0</p>
+</div>
+<nav class="flex-1 space-y-xs">
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest/50 px-lg py-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest/50 px-lg py-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-label-sm text-label-sm">Studio</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest/50 px-lg py-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-sm text-label-sm">Agents</span>
+</div>
+<div class="flex items-center gap-md bg-secondary-container/20 text-tertiary border-r-2 border-tertiary px-lg py-sm translate-x-1 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">group_work</span>
+<span class="font-label-sm text-label-sm font-bold">Swarms</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest/50 px-lg py-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-sm text-label-sm">Datasets</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest/50 px-lg py-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined">memory</span>
+<span class="font-label-sm text-label-sm">Compute</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest/50 px-lg py-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-sm text-label-sm">Monitor</span>
+</div>
+</nav>
+<div class="px-lg pt-lg mt-auto border-t border-outline-variant/20 space-y-xs">
+<button class="w-full bg-tertiary text-on-tertiary py-sm rounded-lg font-label-sm text-label-sm font-bold flex items-center justify-center gap-sm hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Runtime
+            </button>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest/50 px-md py-sm transition-all cursor-pointer rounded-lg mt-md">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-sm text-label-sm">Documentation</span>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-24 pb-xl px-margin-mobile md:px-margin-desktop min-h-screen">
+<!-- Header Section -->
+<section class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-lg">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight mb-xs">Active Swarms</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Orchestrate multi-agent collaborations through dynamic delegation. Monitor real-time task propagation across distributed neural clusters.</p>
+</div>
+<div class="flex gap-md">
+<div class="px-lg py-md glass-panel rounded-xl border border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-60 uppercase tracking-widest mb-xs">Total Agents</p>
+<p class="font-headline-lg text-headline-lg text-tertiary">1,284</p>
+</div>
+<div class="px-lg py-md glass-panel rounded-xl border border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-60 uppercase tracking-widest mb-xs">Efficiency</p>
+<p class="font-headline-lg text-headline-lg text-secondary">98.2%</p>
+</div>
+</div>
+</section>
+<!-- Visualization & Analytics Grid -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Swarm Hierarchy Visualization (Bento Main) -->
+<div class="col-span-12 lg:col-span-8 glass-panel rounded-xl overflow-hidden relative group min-h-[600px] flex flex-col border border-outline-variant/30">
+<div class="p-lg flex items-center justify-between border-b border-outline-variant/20 z-10">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-tertiary">hub</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile">Orchestration Graph</h2>
+</div>
+<div class="flex items-center gap-xs">
+<button class="material-symbols-outlined p-xs hover:bg-surface-container-highest/50 rounded transition-colors">zoom_in</button>
+<button class="material-symbols-outlined p-xs hover:bg-surface-container-highest/50 rounded transition-colors">zoom_out</button>
+<button class="material-symbols-outlined p-xs hover:bg-surface-container-highest/50 rounded transition-colors">fullscreen</button>
+</div>
+</div>
+<!-- Graph Workspace -->
+<div class="flex-1 relative overflow-hidden bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-surface-container-low to-background">
+<!-- Grid Overlay -->
+<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#909095 0.5px, transparent 0.5px), linear-gradient(90deg, #909095 0.5px, transparent 0.5px); background-size: 40px 40px;"></div>
+<!-- Nodes and Connectors -->
+<div class="absolute inset-0 p-xl flex flex-col justify-center items-center">
+<!-- Top Level: Leader -->
+<div class="relative mb-32 z-20">
+<div class="w-24 h-24 rounded-full glass-panel flex flex-col items-center justify-center border-2 border-tertiary swarm-node-active glow-cyan">
+<span class="material-symbols-outlined text-tertiary text-3xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-[10px] mt-1 font-bold text-tertiary">ORCHESTRATOR</span>
+</div>
+<!-- Delegation Lines -->
+<div class="absolute top-24 left-1/2 -translate-x-1/2 w-[400px] h-32 flex justify-between pointer-events-none">
+<svg class="w-full h-full overflow-visible">
+<path d="M 200 0 L 0 100" fill="none" stroke="rgba(47, 217, 244, 0.4)" stroke-width="1.5"></path>
+<path d="M 200 0 L 200 100" fill="none" stroke="rgba(47, 217, 244, 0.4)" stroke-width="1.5"></path>
+<path d="M 200 0 L 400 100" fill="none" stroke="rgba(47, 217, 244, 0.4)" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<!-- Mid Level: Agents -->
+<div class="flex gap-xl md:gap-32 relative z-20">
+<!-- Agent 1 -->
+<div class="group/node relative">
+<div class="w-20 h-20 rounded-lg glass-panel flex flex-col items-center justify-center border border-outline-variant hover:border-secondary transition-all cursor-pointer">
+<span class="material-symbols-outlined text-secondary">memory</span>
+<span class="font-label-sm text-[10px] mt-1 text-on-surface-variant">NODE_ALPHA</span>
+</div>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-px h-8 bg-outline-variant/30"></div>
+</div>
+<!-- Agent 2 -->
+<div class="group/node relative">
+<div class="w-20 h-20 rounded-lg glass-panel flex flex-col items-center justify-center border border-secondary glow-cyan shadow-[0_0_15px_-5px_#c0c1ff]">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-sm text-[10px] mt-1 text-secondary">NODE_BETA</span>
+</div>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-px h-8 bg-secondary/50"></div>
+<div class="absolute top-24 left-1/2 -translate-x-1/2 w-[200px] h-24 flex justify-between pointer-events-none">
+<svg class="w-full h-full overflow-visible">
+<path d="M 100 0 L 50 80" fill="none" stroke="rgba(192, 193, 255, 0.4)" stroke-width="1"></path>
+<path d="M 100 0 L 150 80" fill="none" stroke="rgba(192, 193, 255, 0.4)" stroke-width="1"></path>
+</svg>
+</div>
+</div>
+<!-- Agent 3 -->
+<div class="group/node relative">
+<div class="w-20 h-20 rounded-lg glass-panel flex flex-col items-center justify-center border border-outline-variant hover:border-secondary transition-all cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant">database</span>
+<span class="font-label-sm text-[10px] mt-1 text-on-surface-variant">NODE_GAMMA</span>
+</div>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-px h-8 bg-outline-variant/30"></div>
+</div>
+</div>
+<!-- Bottom Level: Workers -->
+<div class="mt-24 flex gap-lg z-20">
+<div class="w-12 h-12 rounded glass-panel border border-outline-variant/20 flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-sm">hardware</span>
+</div>
+<div class="w-12 h-12 rounded glass-panel border border-outline-variant/20 flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-sm">hardware</span>
+</div>
+<div class="w-12 h-12 rounded glass-panel border border-outline-variant/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-secondary">cloud</span>
+</div>
+<div class="w-12 h-12 rounded glass-panel border border-outline-variant/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-secondary">terminal</span>
+</div>
+<div class="w-12 h-12 rounded glass-panel border border-outline-variant/20 flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-sm">hardware</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Legend -->
+<div class="absolute bottom-6 left-6 flex gap-md bg-surface-container-lowest/80 border border-outline-variant/30 p-sm rounded-lg backdrop-blur-md">
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant">Active</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant">Processing</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant">Standby</span>
+</div>
+</div>
+</div>
+<!-- Orchestration Metrics (Side Bento) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<!-- Performance Card -->
+<div class="glass-panel p-lg rounded-xl border border-outline-variant/30">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-label-sm text-label-sm font-bold uppercase tracking-widest text-on-surface-variant">Swarm Efficiency</h3>
+<span class="material-symbols-outlined text-tertiary">query_stats</span>
+</div>
+<div class="space-y-lg">
+<div>
+<div class="flex justify-between mb-xs">
+<span class="font-label-sm text-[11px] text-on-surface-variant">Message Propagation</span>
+<span class="font-label-sm text-[11px] text-tertiary">14ms</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[85%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-xs">
+<span class="font-label-sm text-[11px] text-on-surface-variant">Resource Utilization</span>
+<span class="font-label-sm text-[11px] text-secondary">92%</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[92%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-xs">
+<span class="font-label-sm text-[11px] text-on-surface-variant">Error Rate</span>
+<span class="font-label-sm text-[11px] text-error">0.02%</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error w-[2%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Leader Delegation Feed -->
+<div class="glass-panel rounded-xl border border-outline-variant/30 flex-1 overflow-hidden flex flex-col">
+<div class="p-lg border-b border-outline-variant/20">
+<h3 class="font-label-sm text-label-sm font-bold uppercase tracking-widest text-on-surface-variant">Delegation Log</h3>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-md font-mono-code text-[12px] custom-scrollbar">
+<div class="p-sm bg-surface-container-low/50 rounded border-l-2 border-tertiary">
+<span class="text-tertiary">[14:02:11]</span> ORCHESTRATOR -&gt; NODE_BETA: Delegate "Deep Context Analysis"
+                        </div>
+<div class="p-sm bg-surface-container-low/50 rounded border-l-2 border-secondary">
+<span class="text-secondary">[14:02:14]</span> NODE_BETA -&gt; WORKER_04: Propagation "Vector Search"
+                        </div>
+<div class="p-sm bg-surface-container-low/50 rounded border-l-2 border-outline-variant">
+<span class="text-on-surface-variant">[14:02:18]</span> NODE_ALPHA: Status transition -&gt; "Awaiting Consensus"
+                        </div>
+<div class="p-sm bg-surface-container-low/50 rounded border-l-2 border-tertiary">
+<span class="text-tertiary">[14:02:22]</span> ORCHESTRATOR: Re-balancing swarm topology...
+                        </div>
+<div class="p-sm bg-surface-container-low/50 rounded border-l-2 border-tertiary opacity-50">
+<span class="text-tertiary">[14:02:25]</span> Consensus reached on "Protocol_v2"
+                        </div>
+</div>
+<div class="p-md bg-surface-container-low/80 border-t border-outline-variant/20">
+<button class="w-full py-xs border border-outline-variant/50 hover:bg-surface-container-highest/50 rounded font-label-sm text-[10px] transition-all">VIEW FULL TELEMETRY</button>
+</div>
+</div>
+</div>
+</div>
+<!-- System Protocols Section -->
+<section class="mt-xl grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="glass-panel p-lg rounded-xl border border-outline-variant/30 hover:shadow-2xl transition-all group">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary">security</span>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile mb-sm">Consensus Logic</h4>
+<p class="text-on-surface-variant font-body-md text-sm">Byzantine Fault Tolerance protocols integrated into every swarm cluster to ensure 100% data integrity during collaboration.</p>
+</div>
+<div class="glass-panel p-lg rounded-xl border border-outline-variant/30 hover:shadow-2xl transition-all group">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary">bolt</span>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile mb-sm">Low Latency</h4>
+<p class="text-on-surface-variant font-body-md text-sm">Direct-link neural propagation allows agents to communicate across clusters with sub-5ms overhead latency.</p>
+</div>
+<div class="glass-panel p-lg rounded-xl border border-outline-variant/30 hover:shadow-2xl transition-all group">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-surface">account_tree</span>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile mb-sm">Auto-Scaling</h4>
+<p class="text-on-surface-variant font-body-md text-sm">Swarms automatically spawn or prune worker instances based on real-time task complexity and resource availability.</p>
+</div>
+</section>
+<!-- Visualization Image Section -->
+<section class="mt-xl relative rounded-2xl overflow-hidden h-64 md:h-96 group">
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700" data-alt="A cinematic, wide-angle visualization of a futuristic AI neural network swarm. Thousands of tiny glowing particles represent agents interconnected by brilliant cyan and indigo light filaments, forming a complex 3D lattice structure. The environment is a deep obsidian void with subtle volumetric fog and high-density data overlays floating in the foreground. The lighting is dramatic, focusing on the core orchestrator node which radiates an intense electric violet glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiKWIq8AKYW-9k0m6v4fGZ36SUC83j6etOe-loc1zm1yqtw8IVzRsAmVU2fznVWNFeZGWmiCJXfPJ3C6B_8mkdOfyzIcgY9qBhY1tHImBk1g3XunyAn2yYm0lHg-d6azjg95rW4JSL-t2ihA4-oqFboAR6SGBS-DKDCCSNHM96ypnjGcPeIFXKJoeRo_hTqRmWZswuBMSQjRjsZirak-F4SXWpqeM0Wamt7bdLi2QcddeeBgfCQlkQcSTXea75K8pKp4h5BsQl9is"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-lg left-lg">
+<div class="px-md py-xs bg-tertiary/20 backdrop-blur-md rounded border border-tertiary/50 mb-sm inline-block">
+<span class="font-label-sm text-label-sm text-tertiary font-bold">LIVE VISUALIZATION</span>
+</div>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface drop-shadow-lg">Visualizing the Collective</h2>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-xl mt-auto border-t border-outline-variant/20 bg-background dark:bg-background">
+<div class="max-w-7xl mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-xl">
+<div class="col-span-1 md:col-span-2">
+<span class="font-display-lg text-display-lg font-bold text-on-surface mb-lg block">UNIC.ai</span>
+<p class="text-on-surface-variant font-body-md max-w-sm">© 2024 UNIC.ai. Operating System for AI Companies. Powering the next generation of collective intelligence.</p>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm font-bold text-secondary uppercase tracking-widest mb-lg">Platform</h5>
+<ul class="space-y-md">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md hover:underline decoration-secondary underline-offset-4" href="/dashboard">Marketplace</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md hover:underline decoration-secondary underline-offset-4" href="/dashboard">Workflows</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md hover:underline decoration-secondary underline-offset-4" href="/dashboard">Safety Protocols</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm font-bold text-secondary uppercase tracking-widest mb-lg">Resources</h5>
+<ul class="space-y-md">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md hover:underline decoration-secondary underline-offset-4" href="/dashboard">API Docs</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md hover:underline decoration-secondary underline-offset-4" href="/dashboard">Company</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md hover:underline decoration-secondary underline-offset-4" href="/dashboard">Resources</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<!-- FAB (Suppressed on this deep dashboard view per rules, but included if needed for specific logic) -->
+<script>
+        // Micro-interaction: Node Pulse Effect
+        document.querySelectorAll('.group\\/node').forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                node.querySelector('.glass-panel').style.transform = 'scale(1.05) translateY(-5px)';
+                node.querySelector('.glass-panel').style.boxShadow = '0 0 25px -5px rgba(47, 217, 244, 0.4)';
+            });
+            node.addEventListener('mouseleave', () => {
+                node.querySelector('.glass-panel').style.transform = 'scale(1) translateY(0)';
+                node.querySelector('.glass-panel').style.boxShadow = 'none';
+            });
+        });
+
+        // Simulating Real-time Delegation Log Updates
+        const logElement = document.querySelector('.custom-scrollbar');
+        const prefixes = ['[14:02:28]', '[14:02:31]', '[14:02:35]', '[14:02:39]'];
+        const messages = [
+            'NODE_GAMMA -> Storage: Commit "Task_State_Final"',
+            'ORCHESTRATOR: Balancing cluster "US-EAST-01"',
+            'Safety: Policy check passed for Swarm_Exec_77',
+            'Telemetry: All agents reporting optimal status'
+        ];
+        let index = 0;
+
+        setInterval(() => {
+            if (index < messages.length) {
+                const newLog = document.createElement('div');
+                newLog.className = 'p-sm bg-surface-container-low/50 rounded border-l-2 border-outline-variant animate-pulse';
+                newLog.innerHTML = `<span class="text-on-surface-variant">${prefixes[index]}</span> ${messages[index]}`;
+                logElement.appendChild(newLog);
+                logElement.scrollTop = logElement.scrollHeight;
+                index++;
+            }
+        }, 4000);
+    </script>

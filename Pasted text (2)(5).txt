@@ -1,0 +1,161 @@
+Categories:
+
+POSITIVE
+
+NEUTRAL
+
+NEGATIVE
+
+Return JSON only.
+
+    canvas.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        contextMenu.style.top = `${e.clientY}px`;
+        contextMenu.style.left = `${e.clientX}px`;
+        contextMenu.classList.remove('hidden');
+    });
+
+    document.addEventListener('click', () => {
+        contextMenu.classList.add('hidden');
+    });
+
+    // Draggable-sim (visual only for mockup)
+    let isDragging = false;
+    canvas.addEventListener('mousedown', () => isDragging = true);
+    window.addEventListener('mouseup', () => isDragging = false);
+    
+    // Panning effect logic placeholder
+    canvas.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            // Logic for shifting grid background
+        }
+    });
+</script>
+
+    // Atmospheric mouse glow effect for the left section
+    const leftSection = document.querySelector('section:first-child');
+    leftSection.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const x = (clientX / window.innerWidth) * 100;
+        const y = (clientY / window.innerHeight) * 100;
+        leftSection.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(47, 217, 244, 0.05) 0%, transparent 50%), #000f21`;
+    });
+</script>
+
+    let index = 0;
+    setInterval(() => {
+        const log = logs[index % logs.length];
+        const div = document.createElement('div');
+        div.className = 'flex gap-md opacity-0 transition-opacity duration-500';
+        div.innerHTML = `
+            <span class="text-on-surface-variant/40">${log.time}</span>
+            <span class="${log.color}">${log.type}</span>
+            <span class="text-on-surface-variant">${log.content}</span>
+        `;
+        logContainer.appendChild(div);
+        
+        // Fade in
+        setTimeout(() => div.classList.remove('opacity-0'), 10);
+        
+        // Auto scroll
+        logContainer.scrollTop = logContainer.scrollHeight;
+        
+        // Remove old logs to maintain performance
+        if (logContainer.children.length > 20) {
+            logContainer.removeChild(logContainer.children[0]);
+        }
+        
+        index++;
+    }, 4000);
+</script>
+
+    .cinematic-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(circle at 50% 50%, #0a192f 0%, #031427 100%);
+    }
+
+    .grid-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(47, 217, 244, 0.05) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(47, 217, 244, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+    }
+
+    .glass-panel {
+        backdrop-filter: blur(12px);
+        background: rgba(16, 32, 52, 0.7);
+        border: 0.5px solid rgba(144, 144, 149, 0.2);
+    }
+
+    .glow-button:hover {
+        box-shadow: 0 0 15px rgba(49, 49, 192, 0.6);
+    }
+
+    @keyframes pulse-emerald {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+    }
+    .status-pulse {
+        animation: pulse-emerald 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+</style>
+
+    function init() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        particles = [];
+        for (let i = 0; i < 150; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.5,
+                vx: (Math.random() - 0.5) * 0.2,
+                vy: (Math.random() - 0.5) * 0.2,
+                opacity: Math.random()
+            });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(47, 217, 244, ${p.opacity * 0.3})`;
+            ctx.fill();
+            
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
+        });
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    draw();
+
+    // Simple input focus effects
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.parentElement.parentElement.classList.add('scale-[1.01]');
+        });
+        input.addEventListener('blur', () => {
+            input.parentElement.parentElement.classList.remove('scale-[1.01]');
+        });
+    });
+</script>

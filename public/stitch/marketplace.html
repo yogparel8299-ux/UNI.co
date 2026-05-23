@@ -1,0 +1,524 @@
+<!-- Marketplace | UNIC.ai -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UNIC.ai | Asset Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(16, 32, 52, 0.4);
+            backdrop-filter: blur(12px);
+            border: 0.5px solid rgba(69, 71, 75, 0.3);
+        }
+        .cyber-border-top {
+            border-top: 0.5px solid #2fd9f4;
+        }
+        .terminal-glow:hover {
+            box-shadow: 0 0 15px rgba(47, 217, 244, 0.15);
+        }
+        body {
+            background-color: #031427;
+            color: #d3e4fe;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #031427;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #45474b;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#2fd9f4",
+                      "surface-container-low": "#0b1c30",
+                      "secondary": "#c0c1ff",
+                      "inverse-surface": "#d3e4fe",
+                      "inverse-primary": "#5d5e63",
+                      "inverse-on-surface": "#213145",
+                      "on-tertiary-fixed-variant": "#004e5a",
+                      "on-background": "#d3e4fe",
+                      "on-tertiary-container": "#008699",
+                      "surface-variant": "#26364a",
+                      "surface": "#031427",
+                      "surface-container-lowest": "#000f21",
+                      "secondary-container": "#3131c0",
+                      "outline": "#909095",
+                      "secondary-fixed-dim": "#c0c1ff",
+                      "primary-fixed-dim": "#c6c6cc",
+                      "tertiary-fixed": "#a2eeff",
+                      "on-primary-fixed-variant": "#45474b",
+                      "primary": "#c6c6cc",
+                      "outline-variant": "#45474b",
+                      "surface-tint": "#c6c6cc",
+                      "surface-bright": "#2a3a4f",
+                      "on-primary-fixed": "#1a1c20",
+                      "primary-container": "#0a0c10",
+                      "background": "#031427",
+                      "tertiary-container": "#000e12",
+                      "on-secondary-fixed-variant": "#2f2ebe",
+                      "primary-fixed": "#e2e2e8",
+                      "tertiary": "#2fd9f4",
+                      "on-secondary-container": "#b0b2ff",
+                      "on-tertiary-fixed": "#001f25",
+                      "secondary-fixed": "#e1e0ff",
+                      "on-secondary-fixed": "#07006c",
+                      "on-primary": "#2f3035",
+                      "surface-container-high": "#1b2b3f",
+                      "on-secondary": "#1000a9",
+                      "on-error-container": "#ffdad6",
+                      "on-surface": "#d3e4fe",
+                      "error-container": "#93000a",
+                      "error": "#ffb4ab",
+                      "surface-container": "#102034",
+                      "on-surface-variant": "#c6c6cb",
+                      "surface-container-highest": "#26364a",
+                      "on-tertiary": "#00363e",
+                      "on-error": "#690005",
+                      "surface-dim": "#031427",
+                      "on-surface": "#d3e4fe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "margin-desktop": "64px",
+                      "gutter": "20px",
+                      "base": "4px",
+                      "xl": "48px",
+                      "xs": "4px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "display-xl": ["Inter"],
+                      "mono-code": ["Geist"],
+                      "label-sm": ["Geist"],
+                      "display-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "mono-code": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="font-body-md text-body-md selection:bg-tertiary/30 selection:text-tertiary">
+<!-- TopNavBar Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-lg shadow-surface-container-lowest/50 flex justify-between items-center px-margin-desktop h-16">
+<div class="flex items-center gap-xl">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tighter">UNIC.ai</span>
+<div class="hidden md:flex items-center gap-md">
+<a class="text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 font-label-sm text-label-sm" href="/dashboard">Studio</a>
+<a class="text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 font-label-sm text-label-sm" href="/dashboard">Agents</a>
+<a class="text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 font-label-sm text-label-sm" href="/dashboard">Swarms</a>
+<a class="text-on-surface-variant hover:text-on-surface px-2 transition-colors duration-200 font-label-sm text-label-sm" href="/dashboard">Infrastructure</a>
+<a class="text-tertiary border-b border-tertiary font-bold px-2 font-label-sm text-label-sm" href="/dashboard">Marketplace</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex items-center bg-surface-container-highest/20 rounded px-sm py-1 border border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-sm font-label-sm w-48 text-on-surface" placeholder="Search assets..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-tertiary">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-tertiary">terminal</span>
+<button class="bg-secondary text-on-secondary px-md py-1.5 rounded-lg font-label-sm text-label-sm font-bold active:scale-95 transition-all">Execute</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on main marketplace browse to prioritize canvas width, but kept for logic) -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col py-lg transform -translate-x-full md:translate-x-0 transition-transform hidden lg:flex">
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-tertiary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-black text-on-surface leading-none">UNIC.ai</h2>
+<p class="text-[10px] text-tertiary tracking-widest uppercase font-bold">Enterprise OS</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex items-center gap-md bg-secondary-container/20 text-tertiary border-r-2 border-tertiary px-lg py-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Marketplace</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-label-sm text-label-sm">Studio</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-sm text-label-sm">Agents</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined">group_work</span>
+<span class="font-label-sm text-label-sm">Swarms</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50 cursor-pointer">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-sm text-label-sm">Datasets</span>
+</div>
+</nav>
+<div class="px-lg mt-auto border-t border-outline-variant/20 pt-lg">
+<button class="w-full bg-surface-container-highest border border-outline-variant/30 text-on-surface px-md py-sm rounded font-label-sm text-label-sm mb-md hover:bg-surface-bright transition-colors">
+                New Runtime
+            </button>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm">help</span>
+<span class="font-label-sm text-label-sm">Documentation</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:text-on-surface transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm">contact_support</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-16 min-h-screen flex flex-col">
+<!-- Hero Section -->
+<section class="relative h-[400px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40 grayscale" data-alt="A wide cinematic shot of a futuristic data center with infinite rows of glowing server racks emitting deep blue and indigo light. Subtle motion blurs suggest high-speed data flow. The atmosphere is cold, industrial, and highly sophisticated, reflecting a premium enterprise AI operating system environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrqX53Hv_pc9MmLyZniedGU-Bd6J6RQBpJ_GoU7QtqIk1aFJydTmZ8KBlM81aMSgYtvjaOCyn9Xw28Qb9Z0ToUKG0DvVqR9kUEejcmgwB98RljrlpBTZpDwZY_0VpQDhOBnx-E1AlShvkExiFaa9gkpFLGUtSsmiIGLwMGQv9vVZ8_GCFcbIusrT3iFIWjEzZMdXoH7c3mIxWk4_HsyqfXb6H0PYu8DP0S_saXwU8HN8HDB2qSW78dWgiWXWgYGoitLIiqWvoVoHo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
+</div>
+<div class="relative z-10 px-margin-desktop w-full max-w-5xl">
+<div class="inline-flex items-center gap-sm bg-tertiary/10 border border-tertiary/30 px-sm py-1 rounded-full mb-md">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-tertiary font-label-sm text-label-sm uppercase tracking-widest">Enterprise Validated Assets</span>
+</div>
+<h1 class="font-display-xl text-display-xl text-on-surface mb-md">Asset <span class="text-tertiary">Marketplace</span></h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-xl">
+                    Deploy production-grade workflows, autonomous agents, and curated datasets directly into your UNIC.ai runtime. High-density infrastructure meet seamless orchestration.
+                </p>
+<div class="flex gap-md">
+<button class="bg-tertiary text-on-tertiary px-xl py-md rounded-lg font-bold flex items-center gap-sm hover:shadow-[0_0_20px_rgba(47,217,244,0.3)] transition-all">
+<span class="material-symbols-outlined">rocket_launch</span>
+                        Explore New Arrivals
+                    </button>
+<button class="border border-outline-variant/50 text-on-surface px-xl py-md rounded-lg font-bold hover:bg-surface-variant/20 transition-all">
+                        Become a Contributor
+                    </button>
+</div>
+</div>
+</section>
+<!-- Category Grid -->
+<section class="px-margin-desktop py-xl">
+<div class="flex items-center justify-between mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Categories</h2>
+<div class="flex gap-sm">
+<span class="p-2 border border-outline-variant/30 rounded cursor-pointer hover:bg-surface-variant/30 text-on-surface-variant transition-colors"><span class="material-symbols-outlined">arrow_back</span></span>
+<span class="p-2 border border-outline-variant/30 rounded cursor-pointer hover:bg-surface-variant/30 text-on-surface-variant transition-colors"><span class="material-symbols-outlined">arrow_forward</span></span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Category Card -->
+<div class="glass-card p-lg rounded-xl flex flex-col gap-md group cursor-pointer hover:border-tertiary/50 transition-all">
+<div class="w-12 h-12 bg-surface-container-high rounded flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">schema</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Workflows</h3>
+<p class="text-on-surface-variant text-label-sm font-label-sm">Standardized multi-agent orchestration pipelines.</p>
+</div>
+</div>
+<!-- Category Card -->
+<div class="glass-card p-lg rounded-xl flex flex-col gap-md group cursor-pointer hover:border-secondary/50 transition-all">
+<div class="w-12 h-12 bg-surface-container-high rounded flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Agents</h3>
+<p class="text-on-surface-variant text-label-sm font-label-sm">Autonomous entities for specialized operational tasks.</p>
+</div>
+</div>
+<!-- Category Card -->
+<div class="glass-card p-lg rounded-xl flex flex-col gap-md group cursor-pointer hover:border-on-tertiary-container/50 transition-all">
+<div class="w-12 h-12 bg-surface-container-high rounded flex items-center justify-center text-on-tertiary-container group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">database</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Datasets</h3>
+<p class="text-on-surface-variant text-label-sm font-label-sm">Validated RAG inputs and fine-tuning corpora.</p>
+</div>
+</div>
+<!-- Category Card -->
+<div class="glass-card p-lg rounded-xl flex flex-col gap-md group cursor-pointer hover:border-primary/50 transition-all">
+<div class="w-12 h-12 bg-surface-container-high rounded flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">build</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Tools</h3>
+<p class="text-on-surface-variant text-label-sm font-label-sm">CLI plugins and infrastructure connectors.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Listing: Bento Grid Style -->
+<section class="px-margin-desktop py-xl bg-surface-container-lowest/30">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Featured Runtimes</h2>
+<p class="text-on-surface-variant">Top rated assets for immediate deployment.</p>
+</div>
+<div class="flex bg-surface-container rounded p-1 border border-outline-variant/20">
+<button class="bg-surface-variant text-on-surface px-md py-1 rounded font-label-sm text-label-sm">Grid</button>
+<button class="text-on-surface-variant px-md py-1 rounded font-label-sm text-label-sm hover:text-on-surface">List</button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-lg">
+<!-- Large Featured Card (Workflows) -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl overflow-hidden flex flex-col md:flex-row group terminal-glow transition-all">
+<div class="w-full md:w-1/2 relative h-64 md:h-auto">
+<img class="w-full h-full object-cover" data-alt="A complex network visualization representing an AI workflow with nodes and glowing cyan connections. The background is a deep navy grid, and the nodes have crystalline textures. High-resolution sparks and particle effects flow along the connections, suggesting active data processing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYtouKhY0L4wj5rhylCbxHnzfK4L5TC-7XyPD53y9ipLBYQQiI1WDtKwGxWt0G00PZuClZ9S_TFPtaSyO0SWFIwrVOFyQf8shnt3EB83XiRyD1WwLe3-3qb1Ghe4rLa4_2PW3wIJFn5ZM2-Ye20VDBN-1H35QEdNV_Vv9jEuNos25OV7EV_61tD4FPOpe73RB7MJ36MoYe8xsgkMO11Hz2WQJDZJNZ0VJGe8JWu3iQWlys9PJ_S7wy7mkef3kn43xzthiFcIb-04s"/>
+<div class="absolute top-4 left-4 bg-tertiary text-on-tertiary text-[10px] font-bold px-2 py-1 uppercase rounded">Staff Pick</div>
+</div>
+<div class="w-full md:w-1/2 p-xl flex flex-col">
+<div class="flex items-center gap-xs text-tertiary mb-sm">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-tighter">Hyper-Scale Workflow</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-md">Nexus Swarm Orchestrator</h3>
+<p class="text-on-surface-variant mb-xl flex-1">Coordinate up to 128 autonomous agents with zero-latency synchronization. Includes pre-built conflict resolution protocols and automated RAG scaling.</p>
+<div class="grid grid-cols-3 gap-md mb-xl">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase">Latency</span>
+<span class="text-on-surface font-mono-code text-mono-code font-bold">2ms</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase">Rating</span>
+<span class="text-on-surface font-mono-code text-mono-code font-bold">4.9/5</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant uppercase">Cost</span>
+<span class="text-on-surface font-mono-code text-mono-code font-bold">$0.02/tx</span>
+</div>
+</div>
+<div class="flex gap-md mt-auto">
+<button class="flex-1 bg-tertiary text-on-tertiary py-3 rounded font-bold hover:opacity-90 transition-all">Install to Runtime</button>
+<button class="p-3 border border-outline-variant/30 rounded hover:bg-surface-variant/30 transition-all"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+</div>
+</div>
+<!-- Medium Card (Dataset) -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 glass-card rounded-xl overflow-hidden flex flex-col group terminal-glow transition-all">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="An abstract 3D visualization of massive data structures represented by layered, semi-transparent obsidian slabs. Light leaks of violet and indigo seep through the gaps. The aesthetic is clean, dark, and emphasizes high-density information storage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGvBgjDT7AtwbRRGlP7tzkve5V7rrkTi7MV6x8BhY2V4LGoOoUrpM5vG_gzRwH9J7TUanIne8FHZT63LVkK_xPD_lBzar3bGobS1kIcRUi-zLcpSKeQhtkAAjfuiz-6f2Re44sopt821ITQkIKcMzNnvG83R3QmAywzjFDE6Qn9cTiFZzsWF8RRWRsUng9fBwxE4zszgKWkjTyYohL-9GNxdCQP5miGZdAGaJs-TtVxXq5CO4-752BXiHEDc4U-qAVZ9X7-uOGU0E"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>
+</div>
+<div class="p-lg flex flex-col flex-1">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Global Legal Corpu</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm">by Quantix_AI</p>
+</div>
+<div class="bg-secondary/10 text-secondary border border-secondary/30 px-2 py-0.5 rounded text-[10px] font-bold">DATASET</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-lg flex-1">2.4TB of structured international legal precedents, optimized for vector indexing and compliance-first RAG.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/20 pt-md">
+<span class="text-on-surface font-bold">1.2k Installs</span>
+<button class="text-tertiary font-bold text-label-sm hover:underline underline-offset-4">Details →</button>
+</div>
+</div>
+</div>
+<!-- Asset Card -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 glass-card rounded-xl overflow-hidden flex flex-col group terminal-glow transition-all">
+<div class="h-48 bg-surface-container-high flex items-center justify-center p-xl">
+<div class="text-center">
+<span class="material-symbols-outlined text-6xl text-on-tertiary-fixed-variant mb-md">support_agent</span>
+<div class="w-32 h-1 bg-outline-variant/20 rounded-full mx-auto"><div class="w-2/3 h-full bg-tertiary rounded-full"></div></div>
+</div>
+</div>
+<div class="p-lg flex flex-col flex-1">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">L1 Support Bot</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm">by UNIC_Core</p>
+</div>
+<div class="bg-tertiary/10 text-tertiary border border-tertiary/30 px-2 py-0.5 rounded text-[10px] font-bold">AGENT</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-lg flex-1">Autonomous Level 1 ticket resolution with empathetic sentiment analysis and 100+ integrations.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/20 pt-md">
+<span class="text-on-surface font-bold">$149.00</span>
+<button class="bg-primary text-on-primary px-md py-1 rounded font-bold text-label-sm active:scale-95 transition-all">Buy Now</button>
+</div>
+</div>
+</div>
+<!-- Asset Card -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 glass-card rounded-xl overflow-hidden flex flex-col group terminal-glow transition-all">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="Macro photography of a high-tech processor with microscopic circuits glowing in a neon violet hue. Sharp focus on the central unit with bokeh lights in the background. Cinematic, high-contrast, representing high-performance AI hardware or tools." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcTzeecD90ii3zsAX3A0fmvGECB0_jHMCZvsAVr1Gmg1eAQuvbdqwdGCG5h3Ar4EyxfY7__r1Icx6hPW9hZd-fGGh-76z3iw1VjrMuWUJIgomz-E_f7ceDuswM6bBVXC4ywIaE6KP0EmjLvXfI03gK5-LYkEA2Lghx1Oubn4Lm82xxcnsT-xdOrUZ3Ecm_bYWjgJx3UZE3JZpE-xw90eYjrLG8cE5rUYRwgKOMdhtK64w4hND9rTshIy8wld6jJiYnZ-qsidJB5wg"/>
+</div>
+<div class="p-lg flex flex-col flex-1">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">CUDA Optimizer X</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm">by Nvidia_Lab</p>
+</div>
+<div class="bg-primary-container text-on-primary-container border border-outline-variant/30 px-2 py-0.5 rounded text-[10px] font-bold">TOOL</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-lg flex-1">Low-level GPU memory manager that reduces training overhead by up to 22% for LLM clusters.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/20 pt-md">
+<span class="text-on-surface font-bold">Free</span>
+<button class="bg-surface-variant text-on-surface px-md py-1 rounded font-bold text-label-sm active:scale-95 transition-all">Clone</button>
+</div>
+</div>
+</div>
+<!-- Asset Card -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 glass-card rounded-xl overflow-hidden flex flex-col group terminal-glow transition-all">
+<div class="h-48 bg-surface-container-high relative overflow-hidden">
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#2fd9f4 1px, transparent 1px); background-size: 10px 10px;"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-secondary">memory</span>
+</div>
+</div>
+<div class="p-lg flex flex-col flex-1">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Neuro-Monitor</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm">by BrainWave</p>
+</div>
+<div class="bg-secondary/10 text-secondary border border-secondary/30 px-2 py-0.5 rounded text-[10px] font-bold">MONITOR</div>
+</div>
+<p class="text-on-surface-variant text-sm mb-lg flex-1">Real-time visualization of model attention weights and neuron activation pathways.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/20 pt-md">
+<span class="text-on-surface font-bold">$24.99 / mo</span>
+<button class="bg-primary text-on-primary px-md py-1 rounded font-bold text-label-sm active:scale-95 transition-all">Subscribe</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic Visualizer Section -->
+<section class="px-margin-desktop py-xl relative overflow-hidden">
+<div class="glass-card rounded-2xl p-xl border border-tertiary/20 flex flex-col lg:flex-row items-center gap-xl">
+<div class="flex-1">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-md leading-tight">Build the <span class="text-secondary">Future</span> of Enterprise AI</h2>
+<p class="text-on-surface-variant font-body-md text-body-md mb-xl">Monetize your proprietary workflows and agents. Reach the world's leading AI-first companies already using UNIC.ai as their core operating system.</p>
+<ul class="flex flex-col gap-md mb-xl">
+<li class="flex items-center gap-sm text-on-surface">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Secure transaction infrastructure with 95% revenue share</span>
+</li>
+<li class="flex items-center gap-sm text-on-surface">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>One-click deployment to enterprise private clouds</span>
+</li>
+<li class="flex items-center gap-sm text-on-surface">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Automated versioning and dependency management</span>
+</li>
+</ul>
+<button class="bg-secondary text-on-secondary px-xl py-md rounded-lg font-bold text-headline-lg-mobile hover:shadow-[0_0_20px_rgba(192,193,255,0.3)] transition-all">Start Selling Today</button>
+</div>
+<div class="flex-1 w-full lg:w-auto relative">
+<div class="relative w-full aspect-square max-w-md mx-auto">
+<div class="absolute inset-0 bg-tertiary/20 blur-3xl rounded-full animate-pulse"></div>
+<div class="relative glass-card w-full h-full rounded-2xl border-2 border-outline-variant/30 flex items-center justify-center">
+<img class="w-[90%] h-[90%] object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-700" data-alt="A clean UI mockup of a creator's dashboard showing earnings charts, active downloads, and asset health status. The interface uses high-density glassmorphism with subtle glow effects on the data lines. The primary color scheme is dark blue and cyan, with electric indigo accents on the call-to-action buttons." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyFJIv4ol9vRvdAPEeaHniJgmr6TA0HO_qYlm0yTbabs_MsJaSBshfrDQjgZI7i5iqKlnzT8MSCtcYy4dFQ02CWERbiIVlU_hqiwF4aIwJ7gN8JxSVjALA0PdFD8IP6pgCNBpuHElSGUSeOM8Zu-RdRkLE60i1MI_iXPQwjNg4kgCt09ff6X_JTTCaQBSEMwPJDQKFhYB1HZq0NY-jqI2oKyhFKiJVAcvTXnZfWchu-KIw0QmrqwcDKKh1AEzqlKcEvLuTfCaD1U4"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Navigation Shell -->
+<footer class="bg-background border-t border-outline-variant/20 w-full py-xl mt-auto">
+<div class="max-w-7xl mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-xl">
+<div class="md:col-span-1">
+<h2 class="font-display-lg text-display-lg font-bold text-on-surface mb-lg">UNIC.ai</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Operating System for AI Companies. © 2024 UNIC.ai. All rights reserved.
+                    </p>
+</div>
+<div class="flex flex-col gap-md">
+<h4 class="font-label-sm text-label-sm font-bold text-tertiary uppercase tracking-widest">Platform</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">Marketplace</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">Workflows</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">Safety Protocols</a>
+</div>
+<div class="flex flex-col gap-md">
+<h4 class="font-label-sm text-label-sm font-bold text-tertiary uppercase tracking-widest">Developer</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">API Docs</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">SDK</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">Registry</a>
+</div>
+<div class="flex flex-col gap-md">
+<h4 class="font-label-sm text-label-sm font-bold text-tertiary uppercase tracking-widest">Company</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">About</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">Resources</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors hover:underline decoration-secondary underline-offset-4 font-body-md text-body-md" href="/dashboard">Contact</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- FAB Action (Suppressed as per rules for Marketplace detail context, but shown for main hub intent) -->
+<div class="fixed bottom-lg right-lg z-50">
+<button class="w-16 h-16 bg-tertiary text-on-tertiary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Atmospheric parallax on hero image
+        window.addEventListener('mousemove', (e) => {
+            const heroImg = document.querySelector('img[data-alt*="futuristic data center"]');
+            if (heroImg) {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+                heroImg.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+
+        // Search bar interaction
+        const searchInput = document.querySelector('input[placeholder="Search assets..."]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('border-tertiary');
+            searchInput.parentElement.classList.add('bg-tertiary/5');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('border-tertiary');
+            searchInput.parentElement.classList.remove('bg-tertiary/5');
+        });
+    </script>
+</body></html>
+

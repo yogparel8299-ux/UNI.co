@@ -1,0 +1,488 @@
+<!-- Approvals | UNIC.ai -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(10, 12, 16, 0.7);
+            backdrop-filter: blur(12px);
+            border: 0.5px solid rgba(69, 71, 75, 0.3);
+        }
+        .cyber-border-active {
+            border-top: 0.5px solid #2fd9f4;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Cinematic Glows */
+        .glow-indigo:hover { box-shadow: 0 0 15px -3px rgba(192, 193, 255, 0.3); }
+        .glow-cyan { box-shadow: 0 0 20px -5px rgba(47, 217, 244, 0.2); }
+        
+        @keyframes pulse-emerald {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .status-pulse { animation: pulse-emerald 2s infinite; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#2fd9f4",
+                        "surface-container-low": "#0b1c30",
+                        "secondary": "#c0c1ff",
+                        "inverse-surface": "#d3e4fe",
+                        "inverse-primary": "#5d5e63",
+                        "inverse-on-surface": "#213145",
+                        "on-tertiary-fixed-variant": "#004e5a",
+                        "on-background": "#d3e4fe",
+                        "on-tertiary-container": "#008699",
+                        "surface-variant": "#26364a",
+                        "surface": "#031427",
+                        "surface-container-lowest": "#000f21",
+                        "secondary-container": "#3131c0",
+                        "outline": "#909095",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "primary-fixed-dim": "#c6c6cc",
+                        "tertiary-fixed": "#a2eeff",
+                        "on-primary-fixed-variant": "#45474b",
+                        "primary": "#c6c6cc",
+                        "outline-variant": "#45474b",
+                        "surface-tint": "#c6c6cc",
+                        "surface-bright": "#2a3a4f",
+                        "on-primary-fixed": "#1a1c20",
+                        "primary-container": "#0a0c10",
+                        "background": "#031427",
+                        "tertiary-container": "#000e12",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "primary-fixed": "#e2e2e8",
+                        "tertiary": "#2fd9f4",
+                        "on-secondary-container": "#b0b2ff",
+                        "on-tertiary-fixed": "#001f25",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-secondary-fixed": "#07006c",
+                        "on-primary": "#2f3035",
+                        "surface-container-high": "#1b2b3f",
+                        "on-secondary": "#1000a9",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#d3e4fe",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "surface-container": "#102034",
+                        "on-surface-variant": "#c6c6cb",
+                        "surface-container-highest": "#26364a",
+                        "on-tertiary": "#00363e",
+                        "on-error": "#690005",
+                        "surface-dim": "#031427",
+                        "on-primary-container": "#797a7f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "margin-desktop": "64px",
+                        "gutter": "20px",
+                        "base": "4px",
+                        "xl": "48px",
+                        "xs": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "mono-code": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col h-full py-lg">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black text-on-surface tracking-tighter">UNIC.ai</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant/60 uppercase tracking-widest mt-xs">Enterprise OS</p>
+</div>
+<nav class="flex-1 space-y-base">
+<a class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50" href="/dashboard">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50" href="/dashboard">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-label-sm text-label-sm">Studio</span>
+</a>
+<a class="flex items-center gap-md bg-secondary-container/20 text-tertiary border-r-2 border-tertiary px-lg py-sm translate-x-1" href="/dashboard">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rule</span>
+<span class="font-label-sm text-label-sm">Approvals</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50" href="/dashboard">
+<span class="material-symbols-outlined">group_work</span>
+<span class="font-label-sm text-label-sm">Swarms</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50" href="/dashboard">
+<span class="material-symbols-outlined">memory</span>
+<span class="font-label-sm text-label-sm">Compute</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-on-surface px-lg py-sm transition-all hover:bg-surface-container-highest/50" href="/dashboard">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-sm text-label-sm">Monitor</span>
+</a>
+</nav>
+<div class="mt-auto px-lg">
+<button class="w-full py-md px-lg bg-tertiary text-on-tertiary font-label-sm text-label-sm rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Runtime
+            </button>
+<div class="mt-xl border-t border-outline-variant/20 pt-lg space-y-sm">
+<a class="flex items-center gap-md text-on-surface-variant hover:text-secondary text-label-sm font-label-sm" href="/dashboard">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                    Documentation
+                </a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-secondary text-label-sm font-label-sm" href="/dashboard">
+<span class="material-symbols-outlined text-[18px]">contact_support</span>
+                    Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 flex flex-col h-full bg-background relative overflow-hidden">
+<!-- Top App Bar -->
+<header class="h-16 flex justify-between items-center px-margin-desktop bg-background/80 backdrop-blur-xl border-b border-outline-variant/30 z-50">
+<div class="flex items-center gap-xl">
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tighter">Approval Control</h2>
+<div class="flex items-center gap-md">
+<span class="font-label-sm text-label-sm text-tertiary border border-tertiary/30 bg-tertiary/10 px-md py-xs rounded-full flex items-center gap-xs">
+<span class="w-1.5 h-1.5 bg-tertiary rounded-full status-pulse"></span>
+                        LIVE SYSTEMS
+                    </span>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="relative">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer p-sm rounded-full hover:bg-surface-container-highest/20 transition-all">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border border-background"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer p-sm rounded-full hover:bg-surface-container-highest/20 transition-all">terminal</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer p-sm rounded-full hover:bg-surface-container-highest/20 transition-all">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A sharp, cinematic portrait of a professional technology executive in a dark, high-contrast studio setting. The subject is wearing a modern charcoal suit, looking confident and focused. Lighting is dramatic with subtle cool blue rim highlights, reflecting a premium enterprise AI environment with a sophisticated and authoritative mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCULmJS_zckL3LE5-8bS9yXXUvsqCyqLl7zH3gPrIJRCv5hzmgg2vqkT47BT1ZQjqfRb41LvhVDlveLmCFylgubyNRThM81AmcQX1uteVh9VS8sLpjfF61sUu5a-h-cm0ZouDpLP0ZCIWLSlmtvGx2ygaPFqbpMpR31rve-AAFNpkG-TappRoSnKN4VC00O9vPeERJrzTKbecB6XH0Idfhz77viKzMSeqFf0ZflAWmb9OnLpmN0dwHPKOhTz_KbOoJzEICtHS6FSsc"/>
+</div>
+</div>
+</header>
+<!-- Approval Workflow Layout (Split Pane) -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Pending List Panel -->
+<section class="w-[400px] border-r border-outline-variant/30 flex flex-col bg-surface-container-lowest/30">
+<div class="p-lg border-b border-outline-variant/20 flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase tracking-widest">Pending List</h3>
+<span class="bg-surface-container-highest text-on-surface px-md py-xs rounded font-mono-code text-label-sm">04</span>
+</div>
+<button class="p-sm hover:bg-surface-container-highest/30 rounded">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar p-md space-y-md">
+<!-- Workflow Item 1 (Active) -->
+<div class="glass-panel p-md cyber-border-active glow-cyan relative cursor-pointer">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-sm py-0.5 rounded">SWARM_EX</span>
+<span class="font-mono-code text-[10px] text-on-surface-variant/50">#8821-XA</span>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Token Liquidator v2</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1 mb-md">Execution of cross-chain rebalance for $4.2M liquidity pool.</p>
+<div class="flex items-center gap-md text-label-sm text-on-surface-variant/80">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                                2m ago
+                            </div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">priority_high</span>
+                                High Risk
+                            </div>
+</div>
+</div>
+<!-- Workflow Item 2 -->
+<div class="p-md border border-outline-variant/20 bg-surface-container-lowest hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-sm text-label-sm text-secondary bg-secondary/10 px-sm py-0.5 rounded">PROMPT_ENGINE</span>
+<span class="font-mono-code text-[10px] text-on-surface-variant/50">#9012-BY</span>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs group-hover:text-secondary transition-colors">Neural Policy Patch</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1 mb-md">Updating safety protocols for LLM cluster 'Nebula'.</p>
+<div class="flex items-center gap-md text-label-sm text-on-surface-variant/80">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                                14m ago
+                            </div>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+                                Security
+                            </div>
+</div>
+</div>
+<!-- Workflow Item 3 -->
+<div class="p-md border border-outline-variant/20 bg-surface-container-lowest hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant/60 bg-on-surface-variant/10 px-sm py-0.5 rounded">DATA_SYNC</span>
+<span class="font-mono-code text-[10px] text-on-surface-variant/50">#1145-CD</span>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs group-hover:text-primary transition-colors">Vector DB Migration</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1 mb-md">Migrating 40TB of production embedding vectors.</p>
+<div class="flex items-center gap-md text-label-sm text-on-surface-variant/80">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                                45m ago
+                            </div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">database</span>
+                                Ops
+                            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed Preview Canvas -->
+<section class="flex-1 flex flex-col bg-surface-container-lowest relative overflow-hidden">
+<div class="p-xl overflow-y-auto no-scrollbar flex-1 pb-40">
+<div class="max-w-4xl mx-auto">
+<div class="flex items-start justify-between mb-xl">
+<div>
+<nav class="flex gap-sm items-center mb-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">Swarms</span>
+<span class="material-symbols-outlined text-[12px] text-on-surface-variant/40">chevron_right</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">Token Liquidator</span>
+<span class="material-symbols-outlined text-[12px] text-on-surface-variant/40">chevron_right</span>
+<span class="font-label-sm text-label-sm text-tertiary">#8821-XA</span>
+</nav>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight mb-sm">Token Liquidator v2</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Manual oversight required for automated liquidity rebalance. The algorithm detected a 12% arbitrage opportunity across 3 chains exceeding the standard $500k threshold.</p>
+</div>
+<div class="flex flex-col items-end">
+<div class="bg-surface-container-high p-md border border-outline-variant/30 rounded-lg text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant/60 block mb-xs">ESTIMATED GAIN</span>
+<span class="font-headline-lg text-headline-lg text-tertiary">+$512,042.88</span>
+</div>
+</div>
+</div>
+<!-- Data Bento Grid -->
+<div class="grid grid-cols-12 gap-lg mb-xl">
+<!-- Code/Payload Preview -->
+<div class="col-span-8 glass-panel rounded-xl overflow-hidden border border-outline-variant/30">
+<div class="px-lg py-md border-b border-outline-variant/20 flex justify-between items-center bg-surface-container-low/50">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">terminal</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface">Execution Payload</span>
+</div>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors">Copy JSON</button>
+</div>
+<div class="p-lg font-mono-code text-mono-code text-secondary/80 bg-black/40">
+<pre class="whitespace-pre-wrap"><code>{
+  "action": "chain_rebalance",
+  "source": "ethereum_mainnet_L1",
+  "target": ["arbitrum_one", "optimism"],
+  "amount": "4,200,000.00 USDC",
+  "gas_limit": "850,000",
+  "slippage_tolerance": "0.05%",
+  "trigger": "MEV_PROTECTION_ENABLED",
+  "agent_id": "liquidator_alpha_v2",
+  "node_cluster": "us-east-1-secure"
+}</code></pre>
+</div>
+</div>
+<!-- Risk Assessment -->
+<div class="col-span-4 flex flex-col gap-lg">
+<div class="glass-panel p-lg rounded-xl flex-1 border border-outline-variant/30">
+<h5 class="font-label-sm text-label-sm text-on-surface-variant mb-md uppercase tracking-widest">Risk Analysis</h5>
+<div class="space-y-lg">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Security Score</span>
+<span class="font-label-sm text-label-sm text-tertiary">98/100</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[98%]"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Compliance</span>
+<span class="font-label-sm text-label-sm text-secondary">PASSED</span>
+</div>
+<div class="p-md bg-error/10 border border-error/20 rounded-lg">
+<div class="flex items-center gap-sm text-error font-label-sm text-label-sm mb-xs">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                                                ANOMALY DETECTED
+                                            </div>
+<p class="font-label-sm text-[11px] text-on-surface-variant leading-relaxed">Transfer size is 4.2x higher than mean execution volume for this swarm.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Log -->
+<div class="border-t border-outline-variant/20 pt-xl">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-xl uppercase tracking-widest">Decision Chain Audit Log</h4>
+<div class="space-y-lg border-l border-outline-variant/30 ml-2">
+<div class="relative pl-lg">
+<div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-tertiary rounded-full shadow-[0_0_8px_rgba(47,217,244,0.6)]"></div>
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Execution Requested</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Triggered by Swarm 'Liquidator Alpha v2' via MEV Monitoring Hook.</p>
+</div>
+<span class="font-mono-code text-[11px] text-on-surface-variant/40">14:22:01 UTC</span>
+</div>
+</div>
+<div class="relative pl-lg">
+<div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-outline-variant rounded-full"></div>
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Safety Guardrails Check</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Automated pass. Risk score exceeds auto-approval threshold (500k).</p>
+</div>
+<span class="font-mono-code text-[11px] text-on-surface-variant/40">14:22:03 UTC</span>
+</div>
+</div>
+<div class="relative pl-lg">
+<div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-tertiary/40 rounded-full border border-tertiary animate-pulse"></div>
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">Awaiting Human Approval</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Status: PENDING. Priority: CRITICAL.</p>
+</div>
+<span class="font-mono-code text-[11px] text-on-surface-variant/40">14:22:04 UTC</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Approval Controls -->
+<div class="absolute bottom-0 left-0 w-full p-xl flex justify-center pointer-events-none">
+<div class="glass-panel p-md rounded-full shadow-2xl flex items-center gap-xl pointer-events-auto border border-outline-variant/40 px-lg">
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-sm bg-error text-on-error px-xl py-md rounded-full font-label-sm text-label-sm hover:opacity-90 transition-all Active:scale-95 duration-150 shadow-lg">
+<span class="material-symbols-outlined">close</span>
+                                REJECT
+                                <span class="opacity-50 ml-xs text-[10px] border border-on-error/30 px-xs rounded">Esc</span>
+</button>
+<button class="flex items-center gap-sm bg-tertiary text-on-tertiary px-xl py-md rounded-full font-label-sm text-label-sm hover:opacity-90 transition-all Active:scale-95 duration-150 shadow-lg glow-cyan">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check</span>
+                                APPROVE &amp; EXECUTE
+                                <span class="opacity-50 ml-xs text-[10px] border border-on-tertiary/30 px-xs rounded">⌘ Ent</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-lg">
+<button class="p-md hover:bg-surface-container-highest/50 rounded-full text-on-surface-variant transition-colors group relative">
+<span class="material-symbols-outlined">chat</span>
+<span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface-container-high text-on-surface text-[10px] px-md py-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Add Comment</span>
+</button>
+<button class="p-md hover:bg-surface-container-highest/50 rounded-full text-on-surface-variant transition-colors group relative">
+<span class="material-symbols-outlined">forward</span>
+<span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface-container-high text-on-surface text-[10px] px-md py-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Escalate</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar Audit / Detail -->
+<aside class="w-80 border-l border-outline-variant/30 bg-surface-container-low/30 p-lg flex flex-col hidden xl:flex">
+<h5 class="font-label-sm text-label-sm text-on-surface-variant mb-xl uppercase tracking-widest">Metadata</h5>
+<div class="space-y-xl">
+<section>
+<h6 class="font-label-sm text-[10px] text-on-surface-variant/40 uppercase mb-md">System Health</h6>
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Cluster Latency</span>
+<span class="font-mono-code text-label-sm text-on-surface">14ms</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Uptime</span>
+<span class="font-mono-code text-label-sm text-tertiary">99.998%</span>
+</div>
+</div>
+</section>
+<section>
+<h6 class="font-label-sm text-[10px] text-on-surface-variant/40 uppercase mb-md">Approvers Assigned</h6>
+<div class="flex -space-x-2">
+<img alt="Approver 1" class="w-8 h-8 rounded-full border-2 border-surface shadow-sm" data-alt="Close-up portrait of a senior female AI architect in a minimalist workspace. She is wearing sleek architectural glasses and a black turtleneck, looking thoughtfully at a monitor. The lighting is soft and neutral with a focus on intellectual precision and professional authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYZhQzdeQ16_xMvIR0J7fg9gYDbIffmJgU6zjzjyMnQGW_m1Z1NFuOGp1sx4xBCE_N-Sa38bjz1MdhaosHnCB0yYrzvkBjNTB28upnztJ7UMA4nAeb-uLNGh8NNpkjt4g3PsQ6VPXz3muhleVGQXXBWf_JfJo-4WKsntFUwIkuui4izLaOoGTUUDQj6Xya2L_Fl2--hbIGKNUGopFLB7LqlyXBtHM27voEi0qtRMjb2gVsUW2Pe7mzvyaRmfsMb4WBmASMEj6fkZg"/>
+<img alt="Approver 2" class="w-8 h-8 rounded-full border-2 border-surface shadow-sm" data-alt="Cinematic profile of a male software engineer working late in a high-tech lab. Visible in the background are blurred server racks with pulsing blue lights. His face is partially lit by the glow of a screen, creating a high-contrast, professional tech-focused atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDHmBWb0t81prbUnxdvlgWQAy33hYN-UISHni9fLj2KP7C66gMZTVAqLdCZ9Fc3nLucCfCCNO-wai5SVWxuJLC6gTPaDqf610Sp4r4uUmc5IDwLIhdn7cReFAmrfvqz0RAtoT1x9K4z-c3vop3ZWK_ygz2kplXUdmecCKM0bERChDzt099xyZcsTFVK3nxB8H1mc1Ce97VaSS6f7ZvjkinMUSq6HnP1LqnlG3mrq6KqYUpsmP0AUO2whH1Dwed7GL9hbbC_j0IFj0"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-highest flex items-center justify-center font-label-sm text-[10px] text-on-surface-variant">+2</div>
+</div>
+</section>
+<section class="mt-auto glass-panel p-md rounded-lg">
+<div class="flex items-center gap-sm text-secondary mb-sm">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span class="font-label-sm text-[11px] font-bold uppercase">Security Channel</span>
+</div>
+<p class="font-label-sm text-[10px] text-on-surface-variant leading-normal">This execution is protected by multi-sig governance and hardware security modules (HSM).</p>
+</section>
+</div>
+</aside>
+</div>
+</main>
+<script>
+        // Micro-interactions for keyboard shortcuts simulation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const rejectBtn = document.querySelector('button.bg-error');
+                rejectBtn.classList.add('scale-95', 'opacity-50');
+                setTimeout(() => rejectBtn.classList.remove('scale-95', 'opacity-50'), 150);
+                console.log('Rejecting workflow...');
+            }
+            if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+                const approveBtn = document.querySelector('button.bg-tertiary');
+                approveBtn.classList.add('scale-95', 'opacity-50');
+                setTimeout(() => approveBtn.classList.remove('scale-95', 'opacity-50'), 150);
+                console.log('Approving workflow...');
+            }
+        });
+
+        // Toggle list items active state
+        const listItems = document.querySelectorAll('section:first-of-type .p-md');
+        listItems.forEach(item => {
+            item.addEventListener('click', () => {
+                listItems.forEach(i => {
+                    i.classList.remove('cyber-border-active', 'glow-cyan', 'glass-panel');
+                    i.classList.add('border', 'border-outline-variant/20', 'bg-surface-container-lowest');
+                });
+                item.classList.remove('border', 'border-outline-variant/20', 'bg-surface-container-lowest');
+                item.classList.add('cyber-border-active', 'glow-cyan', 'glass-panel');
+            });
+        });
+    </script>
+</body></html>
+
