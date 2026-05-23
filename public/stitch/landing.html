@@ -1,33 +1,145 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>UNIC.ai - landing missing</title>
-  <style>
-    body {
-      margin:0;
-      background:#031427;
-      color:#d3e4fe;
-      font-family:Inter,Arial,sans-serif;
-      display:grid;
-      place-items:center;
-      min-height:100vh;
-    }
-    .box {
-      border:1px solid #26364a;
-      background:#0b1c30;
-      padding:32px;
-      max-width:720px;
-    }
-    h1 { color:#2fd9f4; }
-    code { color:#c0c1ff; }
-  </style>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UNIC.ai | The Operating System for AI Companies</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #031427;
+            color: #d3e4fe;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(16, 32, 52, 0.7);
+            backdrop-filter: blur(12px);
+            border: 0.5px solid rgba(69, 71, 75, 0.3);
+        }
+        .cyber-glow {
+            box-shadow: 0 0 20px rgba(47, 217, 244, 0.15);
+        }
+        .workflow-line {
+            stroke-dasharray: 10;
+            animation: dash 20s linear infinite;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: -1000; }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .flicker {
+            animation: flicker 4s linear infinite;
+        }
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 22%, 24%, 55% { opacity: 0.4; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#b0b2ff",
+                        "tertiary-container": "#000e12",
+                        "on-tertiary-container": "#008699",
+                        "surface-container-lowest": "#000f21",
+                        "on-tertiary": "#00363e",
+                        "on-surface": "#d3e4fe",
+                        "surface-container-low": "#0b1c30",
+                        "on-error-container": "#ffdad6",
+                        "surface-bright": "#2a3a4f",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed-dim": "#2fd9f4",
+                        "surface-container-highest": "#26364a",
+                        "outline": "#909095",
+                        "on-tertiary-fixed": "#001f25",
+                        "inverse-primary": "#5d5e63",
+                        "secondary-fixed": "#e1e0ff",
+                        "background": "#031427",
+                        "primary-fixed-dim": "#c6c6cc",
+                        "outline-variant": "#45474b",
+                        "error-container": "#93000a",
+                        "surface-dim": "#031427",
+                        "on-secondary-fixed": "#07006c",
+                        "surface-container": "#102034",
+                        "secondary": "#c0c1ff",
+                        "secondary-container": "#3131c0",
+                        "inverse-on-surface": "#213145",
+                        "on-primary-fixed": "#1a1c20",
+                        "surface-tint": "#c6c6cc",
+                        "surface": "#031427",
+                        "on-secondary": "#1000a9",
+                        "primary-fixed": "#e2e2e8",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "surface-variant": "#26364a",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#004e5a",
+                        "on-primary-fixed-variant": "#45474b",
+                        "tertiary-fixed": "#a2eeff",
+                        "primary-container": "#0a0c10",
+                        "on-primary": "#2f3035",
+                        "on-surface-variant": "#c6c6cb",
+                        "inverse-surface": "#d3e4fe",
+                        "tertiary": "#2fd9f4",
+                        "error": "#ffb4ab",
+                        "primary": "#c6c6cc",
+                        "on-background": "#d3e4fe",
+                        "surface-container-high": "#1b2b3f",
+                        "on-primary-container": "#797a7f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "xl": "48px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "margin-desktop": "64px",
+                        "sm": "8px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "mono-code": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <div class="box">
-    <h1>Missing Stitch HTML: landing</h1>
-    <p>The Next.js route exists, but <code>public/stitch/landing.html</code> was not generated.</p>
-    <p>Paste/export the Stitch HTML for this page and rerun the installer.</p>
-  </div>
-</body>
-</html>
+<body class="font-body-md text-body-md antialiased selection:bg-tertiary selection:text-surface-container-lowest">

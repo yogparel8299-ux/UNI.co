@@ -3,9 +3,9 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>UNIC.ai | Billing &amp; Infrastructure</title>
+<title>UNIC.ai | Memory Infrastructure</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Geist:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -51,15 +51,16 @@
                     "surface-container-high": "#1b2b3f",
                     "on-secondary": "#1000a9",
                     "on-error-container": "#ffdad6",
-                    "on-error": "#690005",
+                    "on-surface": "#d3e4fe",
                     "error-container": "#93000a",
                     "error": "#ffb4ab",
                     "surface-container": "#102034",
                     "on-surface-variant": "#c6c6cb",
                     "surface-container-highest": "#26364a",
                     "on-tertiary": "#00363e",
-                    "on-surface": "#d3e4fe",
-                    "surface-dim": "#031427"
+                    "on-error": "#690005",
+                    "surface-dim": "#031427",
+                    "on-surface": "#d3e4fe"
             },
             "borderRadius": {
                     "DEFAULT": "0.125rem",
@@ -102,27 +103,40 @@
     </script>
 <style>
         .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
         }
         .glass-panel {
-            background: rgba(16, 32, 52, 0.4);
+            background: rgba(16, 32, 52, 0.6);
             backdrop-filter: blur(12px);
             border: 0.5px solid rgba(69, 71, 75, 0.3);
         }
         .cyber-border-top {
-            border-top: 1px solid #2fd9f4;
+            border-top: 0.5px solid #2fd9f4;
         }
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
+        .glow-hover:hover {
+            box-shadow: 0 0 15px rgba(47, 217, 244, 0.15);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #031427;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #45474b;
+            border-radius: 2px;
         }
         @keyframes pulse-emerald {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
         }
-        .active-dot {
-            animation: pulse-emerald 2s infinite;
+        .status-pulse {
+            animation: pulse-emerald 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        #memory-canvas {
+            background: radial-gradient(circle at center, #0b1c30 0%, #031427 100%);
         }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col selection:bg-tertiary selection:text-on-tertiary">
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
