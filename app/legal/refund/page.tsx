@@ -1,2 +1,8 @@
-import PublicShell from "@/components/unic/PublicShell";
-export default function Page(){return <PublicShell><section className="mx-auto max-w-4xl px-6 py-14"><h1 className="text-6xl font-black tracking-[-.06em]">Refund Policy</h1><p className="mt-6 leading-8 text-neutral-500">Refunds are reviewed according to subscription status, usage, credits and applicable commercial terms.</p></section></PublicShell>}
+export default function Page() {
+  return (
+    <main className="min-h-screen bg-[#031427] p-8 text-[#d3e4fe]">
+      <h1 className="text-6xl font-black tracking-[-0.06em]">UNIC.ai refund</h1>
+      <p className="mt-6 max-w-3xl text-[#c6c6cb]">Legal and policy information for the UNIC.ai operating system.</p>
+    </main>
+  );
+}
