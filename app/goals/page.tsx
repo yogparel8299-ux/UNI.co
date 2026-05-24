@@ -1,18 +1,43 @@
-import AppShell from "@/components/unic/AppShell";
+import AppShell, { Card, Metric } from "@/components/unic/AppShell";
 
 export default function Page() {
   return (
-    <AppShell title="Goals" subtitle="Company goals and agent alignment.">
-      <div className="grid gap-4 md:grid-cols-3">
-        {["Create", "Configure", "Monitor", "Review", "Run", "Export"].map((x) => (
-          <div key={x} className="rounded-2xl border border-neutral-200 bg-white p-6">
-            <h2 className="text-2xl font-black">{x}</h2>
-            <p className="mt-3 text-sm text-neutral-500">
-              Workspace action for this module.
-            </p>
-          </div>
-        ))}
+    <AppShell title="Goals" eyebrow="Company direction">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <Metric label="Active" value="Live" />
+        <Metric label="Synced" value="98%" />
+        <Metric label="Queued" value="12" />
+        <Metric label="Status" value="Ready" />
       </div>
+
+      <section className="mt-3 grid gap-3 xl:grid-cols-[1.2fr_.8fr]">
+        <Card className="min-h-[420px]">
+          <p className="mb-3 text-[11.5px] font-medium text-blue-500">Company direction</p>
+          <h2 className="max-w-md text-[1.75rem] font-medium leading-[1.15] tracking-tight text-gray-900">Goals</h2>
+          <p className="mt-3 max-w-sm text-[13px] text-gray-400">Define company goals and align AI agents, swarms and workflows around them.</p>
+
+          <div className="mt-8 grid gap-2">
+            {["Supabase connected", "Realtime ready", "Actions enabled", "Audit trail active"].map((item) => (
+              <div key={item} className="flex items-center justify-between rounded-xl bg-white/50 px-4 py-3 text-[13px]">
+                <span className="text-gray-700">{item}</span>
+                <span className="text-blue-500">→</span>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="min-h-[420px]">
+          <p className="mb-3 text-[11.5px] font-medium text-blue-500">Operational feed</p>
+          <div className="space-y-2">
+            {["Record synced", "Runtime updated", "Policy checked", "Worker completed"].map((item) => (
+              <div key={item} className="rounded-xl bg-white/50 px-4 py-3">
+                <p className="text-[13px] font-medium text-gray-800">{item}</p>
+                <p className="text-[12px] text-gray-400">Just now</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </section>
     </AppShell>
   );
 }

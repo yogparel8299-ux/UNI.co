@@ -1,3 +1,78 @@
+#!/bin/bash
+set -e
+
+echo "Adding remaining UNIC.ai pages..."
+
+make_page () {
+  ROUTE="$1"
+  TITLE="$2"
+  EYEBROW="$3"
+  DESC="$4"
+
+  mkdir -p "app/$ROUTE"
+
+  cat > "app/$ROUTE/page.tsx" <<TSX
+import AppShell, { Card, Metric } from "@/components/unic/AppShell";
+
+export default function Page() {
+  return (
+    <AppShell title="$TITLE" eyebrow="$EYEBROW">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <Metric label="Active" value="Live" />
+        <Metric label="Synced" value="98%" />
+        <Metric label="Queued" value="12" />
+        <Metric label="Status" value="Ready" />
+      </div>
+
+      <section className="mt-3 grid gap-3 xl:grid-cols-[1.2fr_.8fr]">
+        <Card className="min-h-[420px]">
+          <p className="mb-3 text-[11.5px] font-medium text-blue-500">$EYEBROW</p>
+          <h2 className="max-w-md text-[1.75rem] font-medium leading-[1.15] tracking-tight text-gray-900">$TITLE</h2>
+          <p className="mt-3 max-w-sm text-[13px] text-gray-400">$DESC</p>
+
+          <div className="mt-8 grid gap-2">
+            {["Supabase connected", "Realtime ready", "Actions enabled", "Audit trail active"].map((item) => (
+              <div key={item} className="flex items-center justify-between rounded-xl bg-white/50 px-4 py-3 text-[13px]">
+                <span className="text-gray-700">{item}</span>
+                <span className="text-blue-500">→</span>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="min-h-[420px]">
+          <p className="mb-3 text-[11.5px] font-medium text-blue-500">Operational feed</p>
+          <div className="space-y-2">
+            {["Record synced", "Runtime updated", "Policy checked", "Worker completed"].map((item) => (
+              <div key={item} className="rounded-xl bg-white/50 px-4 py-3">
+                <p className="text-[13px] font-medium text-gray-800">{item}</p>
+                <p className="text-[12px] text-gray-400">Just now</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </section>
+    </AppShell>
+  );
+}
+TSX
+}
+
+make_page team "Team" "Workspace members" "Manage members, roles, invites, permissions and company access."
+make_page goals "Goals" "Company direction" "Define company goals and align AI agents, swarms and workflows around them."
+make_page usage "Usage" "Runtime consumption" "Track credits, tokens, workflow runs, model usage and cost controls."
+make_page budgets "Budgets" "Spend governance" "Set limits for agents, workflows, teams, tools and company runtime usage."
+make_page companies "Companies" "Workspace control" "Manage company profiles, operating units, workspaces and ownership structure."
+make_page schedules "Schedules" "Automation timing" "Create recurring agent tasks, workflow triggers and scheduled company operations."
+make_page dataset-sell "Dataset Sell" "Knowledge marketplace" "Package approved datasets for marketplace listing, licensing and monetization."
+make_page agent-evolution "Agent Evolution" "Self-improvement review" "Review AI-generated improvement suggestions, version changes and rollback options."
+make_page worker-health "Worker Health" "Runtime infrastructure" "Monitor DigitalOcean workers, queues, heartbeats, memory and execution stability."
+make_page security "Security" "Company protection" "Manage sessions, access policies, verification, provider locks and sensitive actions."
+make_page secret-manager "Secret Manager" "Encrypted keys" "Store model keys, API keys, provider secrets and tool credentials safely."
+make_page notifications "Notifications" "System alerts" "View workspace alerts, payment events, approval requests and runtime failures."
+
+# update sidebar with remaining pages
+cat > components/unic/AppShell.tsx.tmp <<'TSX'
 "use client";
 
 import Link from "next/link";
@@ -127,3 +202,13 @@ export function Metric({ label, value }: { label: string; value: string }) {
     </Card>
   );
 }
+TSX
+
+mv components/unic/AppShell.tsx.tmp components/unic/AppShell.tsx
+
+npm run build
+git add .
+git commit -m "Add remaining UNIC app pages"
+git push origin main
+
+echo "DONE. Redeploy Vercel."
