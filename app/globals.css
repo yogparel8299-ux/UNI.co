@@ -1,36 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --background: #031427;
-  --foreground: #d3e4fe;
-}
 
 * { box-sizing: border-box; }
 
 html, body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Inter, system-ui, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  background: #f0f0ee;
 }
 
-.font-mono {
-  font-family: "Geist Mono", ui-monospace, monospace;
+.video-soft {
+  filter: saturate(0.86) contrast(0.94) brightness(0.96);
 }
 
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
+.os-panel {
+  background: rgba(237,237,237,.76);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.42);
+}
+
+.dark-panel {
+  background: rgba(12, 16, 22, .58);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.12);
 }

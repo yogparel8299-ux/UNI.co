@@ -1,52 +1,117 @@
+"use client";
+
 import Link from "next/link";
+import Logo from "./Logo";
 
 const nav = [
-  ["Dashboard","/dashboard"],["Companies","/companies"],["Team","/team"],["Goals","/goals"],
-  ["Agents","/agents"],["Skills","/skills"],["Swarms","/swarms"],["Builder","/workflow-studio"],
-  ["Tasks","/tasks"],["Schedules","/schedules"],["Datasets","/datasets"],["Brain","/brain"],
-  ["Approvals","/approvals"],["Realtime","/realtime-dashboard"],["Marketplace","/marketplace"],
-  ["Billing","/billing"],["Budgets","/budgets"],["Usage","/usage"],["Activity","/activity"],["Settings","/settings"]
+  ["Dashboard", "/dashboard"],
+  ["Studio", "/workflow-studio"],
+  ["Agents", "/agents"],
+  ["Swarms", "/swarms"],
+  ["Tasks", "/tasks"],
+  ["Datasets", "/datasets"],
+  ["Brain", "/brain"],
+  ["Connect", "/connection-layer"],
+  ["Market", "/marketplace"],
+  ["Billing", "/billing"],
+  ["Approvals", "/approvals"],
+  ["Activity", "/activity"],
+  ["Settings", "/settings"]
 ];
 
-export default function AppShell({ title, subtitle, children, right }: { title: string; subtitle?: string; children: React.ReactNode; right?: React.ReactNode }) {
+export default function AppShell({
+  title,
+  eyebrow,
+  children
+}: {
+  title: string;
+  eyebrow: string;
+  children: React.ReactNode;
+}) {
   return (
-    <main className="min-h-screen bg-[#f7f7f8] text-black">
-      <aside className="fixed left-0 top-0 hidden h-screen w-[270px] border-r border-neutral-200 bg-white lg:block">
-        <div className="border-b border-neutral-200 p-5">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-black text-white font-black">U</div>
+    <main className="relative min-h-screen overflow-hidden bg-[#f0f0ee] text-gray-900">
+      <video
+        className="video-soft fixed inset-0 h-full w-full object-cover opacity-70"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+      <div className="fixed inset-0 bg-[#f0f0ee]/40" />
+
+      <div className="relative z-10 flex min-h-screen">
+        <aside className="hidden w-[260px] shrink-0 border-r border-white/40 bg-[#ededed]/70 p-4 backdrop-blur-2xl lg:block">
+          <Link href="/" className="mb-8 flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EDEDED]">
+              <Logo />
+            </div>
             <div>
-              <p className="font-black tracking-[-0.04em]">UNIC.ai</p>
-              <p className="text-xs text-neutral-500">AI company OS</p>
+              <p className="text-lg font-semibold tracking-tight">UNIC.ai</p>
+              <p className="text-[11px] text-gray-500">Operating system</p>
             </div>
           </Link>
-        </div>
-        <div className="h-[calc(100vh-82px)] overflow-y-auto p-3">
-          {nav.map(([label, href]) => (
-            <Link key={href} href={href} className="mb-1 block rounded-xl px-3 py-2.5 text-sm font-bold text-neutral-600 hover:bg-neutral-100 hover:text-black">
-              {label}
-            </Link>
-          ))}
-        </div>
-      </aside>
 
-      <section className={right ? "lg:ml-[270px] lg:mr-[330px]" : "lg:ml-[270px]"}>
-        <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur-xl">
-          <div className="flex items-center justify-between px-6 py-4">
-            <div>
-              <h1 className="text-2xl font-black tracking-[-0.04em]">{title}</h1>
-              {subtitle && <p className="mt-1 text-sm text-neutral-500">{subtitle}</p>}
-            </div>
-            <div className="flex gap-2">
-              <Link href="/workflow-studio" className="rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-bold">Builder</Link>
-              <Link href="/settings" className="rounded-lg bg-black px-4 py-2 text-sm font-bold text-white">Settings</Link>
-            </div>
-          </div>
-        </header>
-        <div className="p-6">{children}</div>
-      </section>
+          <nav className="space-y-1">
+            {nav.map(([label, href]) => (
+              <Link
+                key={href}
+                href={href}
+                className="block rounded-xl px-4 py-3 text-[13px] font-medium text-gray-600 transition hover:bg-white/60 hover:text-gray-950"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </aside>
 
-      {right && <aside className="fixed right-0 top-0 hidden h-screen w-[330px] border-l border-neutral-200 bg-white lg:block">{right}</aside>}
+        <section className="flex-1">
+          <header className="flex items-center justify-between px-5 py-4 sm:px-8">
+            <div className="rounded-xl bg-[#EDEDED]/80 px-5 py-3 backdrop-blur-xl">
+              <p className="text-[11px] font-medium text-blue-500">{eyebrow}</p>
+              <h1 className="text-[1.55rem] font-medium leading-[1.1] tracking-tight text-gray-900">
+                {title}
+              </h1>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Link
+                href="/billing"
+                className="rounded-xl bg-[#EDEDED]/80 px-4 py-3 text-[13px] font-medium text-gray-700 backdrop-blur-xl"
+              >
+                Credits
+              </Link>
+              <Link
+                href="/settings"
+                className="rounded-xl bg-[#EDEDED]/80 px-4 py-3 text-[13px] font-medium text-gray-700 backdrop-blur-xl"
+              >
+                Settings
+              </Link>
+            </div>
+          </header>
+
+          <div className="px-5 pb-10 sm:px-8">{children}</div>
+        </section>
+      </div>
     </main>
+  );
+}
+
+export function Card({
+  children,
+  className = ""
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <div className={`os-panel rounded-2xl p-5 ${className}`}>{children}</div>;
+}
+
+export function Metric({ label, value }: { label: string; value: string }) {
+  return (
+    <Card>
+      <p className="text-[11.5px] font-medium text-gray-400">{label}</p>
+      <p className="mt-2 text-[1.75rem] font-medium leading-none tracking-tight text-gray-900">{value}</p>
+    </Card>
   );
 }

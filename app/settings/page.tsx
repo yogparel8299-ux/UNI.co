@@ -1,36 +1,43 @@
-import { AppShell, Panel, Stat } from "@/components/unic/UNICShell";
+import AppShell, { Card, Metric } from "@/components/unic/AppShell";
 
 export default function Page() {
   return (
-    <AppShell title="Workspace Configuration" eyebrow="Settings">
-      <div className="grid gap-5 md:grid-cols-3">
-        <Stat label="Active" value="12" />
-        <Stat label="Queued" value="34" tone="violet" />
-        <Stat label="Health" value="99%" tone="emerald" />
+    <AppShell title="Settings" eyebrow="Workspace control">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <Metric label="Active" value="42" />
+        <Metric label="Synced" value="98%" />
+        <Metric label="Queued" value="12" />
+        <Metric label="Runtime" value="Live" />
       </div>
-      <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_.8fr]">
-        <Panel className="min-h-[420px]">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#2fd9f4]">Operational Surface</p>
-          <h2 className="mt-4 text-4xl font-black tracking-[-0.05em]">Workspace Configuration</h2>
-          <p className="mt-4 max-w-2xl text-[#c6c6cb]">This module is wired into the UNIC.ai operating workspace and ready for Supabase-backed records, runtime states, and production actions.</p>
-          <div className="mt-8 space-y-3">
-            {["Runtime connected", "Supabase ready", "Actions enabled", "Audit trail active"].map((x) => (
-              <div key={x} className="flex justify-between border-b border-[#45474b]/20 py-3 font-mono text-sm">
-                <span>{x}</span>
-                <span className="text-[#2fd9f4]">ONLINE</span>
+
+      <section className="mt-3 grid gap-3 xl:grid-cols-[1.2fr_.8fr]">
+        <Card className="min-h-[420px]">
+          <p className="mb-3 text-[11.5px] font-medium text-blue-500">Workspace control</p>
+          <h2 className="max-w-md text-[1.75rem] font-medium leading-[1.15] tracking-tight text-gray-900">Settings</h2>
+          <p className="mt-3 max-w-sm text-[13px] text-gray-400">Manage workspace profile, keys, limits, security and preferences.</p>
+
+          <div className="mt-8 grid gap-2">
+            {["Supabase connected", "Realtime ready", "Actions enabled", "Audit trail active"].map((item) => (
+              <div key={item} className="flex items-center justify-between rounded-xl bg-white/50 px-4 py-3 text-[13px]">
+                <span className="text-gray-700">{item}</span>
+                <span className="text-blue-500">→</span>
               </div>
             ))}
           </div>
-        </Panel>
-        <Panel>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#c0c1ff]">Actions</p>
-          <div className="mt-5 grid gap-3">
-            {["Create", "Sync", "Review", "Export"].map((x) => (
-              <button key={x} className="rounded border border-[#45474b]/40 bg-[#000f21] px-4 py-3 text-left font-mono text-xs uppercase tracking-[0.12em] hover:border-[#2fd9f4]/60 hover:text-[#2fd9f4]">{x}</button>
+        </Card>
+
+        <Card className="min-h-[420px]">
+          <p className="mb-3 text-[11.5px] font-medium text-blue-500">Operational feed</p>
+          <div className="space-y-2">
+            {["Runtime updated", "Record synced", "Action requested", "Worker completed"].map((item) => (
+              <div key={item} className="rounded-xl bg-white/50 px-4 py-3">
+                <p className="text-[13px] font-medium text-gray-800">{item}</p>
+                <p className="text-[12px] text-gray-400">Just now</p>
+              </div>
             ))}
           </div>
-        </Panel>
-      </div>
+        </Card>
+      </section>
     </AppShell>
   );
 }
