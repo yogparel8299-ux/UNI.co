@@ -1,3 +1,29 @@
+#!/bin/bash
+set -e
+
+mkdir -p public app
+
+cat > app/globals.css <<'CSS'
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: #050505;
+}
+
+a {
+  text-decoration: none;
+}
+CSS
+
+cat > app/page.tsx <<'TSX'
 "use client";
 
 import Link from "next/link";
@@ -122,3 +148,11 @@ export default function HomePage() {
     </main>
   );
 }
+TSX
+
+npm run build
+git add .
+git commit -m "Build cinematic UNIC landing page"
+git push origin main
+
+echo "DONE. Redeploy Vercel."
