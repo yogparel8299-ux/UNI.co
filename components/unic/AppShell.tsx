@@ -35,95 +35,68 @@ export default function AppShell({
   children: React.ReactNode;
 }) {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f0f0ee] text-gray-900">
+    <main className="app-shell">
       <video
-        className="video-soft fixed inset-0 h-full w-full object-cover opacity-70"
+        className="video-bg"
         src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
         autoPlay
         muted
         loop
         playsInline
       />
-      <div className="fixed inset-0 bg-[#f0f0ee]/40" />
+      <div className="page-overlay" />
 
-      <div className="relative z-10 flex min-h-screen">
-        <aside className="hidden w-[260px] shrink-0 border-r border-white/40 bg-[#ededed]/70 p-4 backdrop-blur-2xl lg:block">
-          <Link href="/" className="mb-8 flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EDEDED]">
+      <div className="app-layout">
+        <aside className="sidebar">
+          <Link href="/" className="brand">
+            <div className="logo-pill">
               <Logo />
             </div>
             <div>
-              <p className="text-lg font-semibold tracking-tight">UNIC.ai</p>
-              <p className="text-[11px] text-gray-500">Operating system</p>
+              <div className="brand-title">UNIC.ai</div>
+              <div className="brand-sub">Operating system</div>
             </div>
           </Link>
 
-          <nav className="max-h-[calc(100vh-120px)] space-y-1 overflow-y-auto pr-1">
+          <nav className="sidebar-nav">
             {nav.map(([label, href]) => (
-              <Link
-                key={href}
-                href={href}
-                className="block rounded-xl px-4 py-3 text-[13px] font-medium text-gray-600 transition hover:bg-white/60 hover:text-gray-950"
-              >
+              <Link key={href} href={href} className="sidebar-link">
                 {label}
               </Link>
             ))}
           </nav>
         </aside>
 
-        <section className="flex-1">
-          <header className="flex items-center justify-between px-5 py-4 sm:px-8">
-            <div className="rounded-xl bg-[#EDEDED]/80 px-5 py-3 backdrop-blur-xl">
-              <p className="text-[11px] font-medium text-blue-500">{eyebrow}</p>
-              <h1 className="text-[1.55rem] font-medium leading-[1.1] tracking-tight text-gray-900">
-                {title}
-              </h1>
+        <section className="main">
+          <header className="topbar">
+            <div className="title-box">
+              <p className="eyebrow">{eyebrow}</p>
+              <h1 className="page-title">{title}</h1>
             </div>
 
-            <div className="flex items-center gap-2">
-              <Link
-                href="/billing"
-                className="rounded-xl bg-[#EDEDED]/80 px-4 py-3 text-[13px] font-medium text-gray-700 backdrop-blur-xl"
-              >
-                Credits
-              </Link>
-              <Link
-                href="/notifications"
-                className="rounded-xl bg-[#EDEDED]/80 px-4 py-3 text-[13px] font-medium text-gray-700 backdrop-blur-xl"
-              >
-                Alerts
-              </Link>
-              <Link
-                href="/settings"
-                className="rounded-xl bg-[#EDEDED]/80 px-4 py-3 text-[13px] font-medium text-gray-700 backdrop-blur-xl"
-              >
-                Settings
-              </Link>
+            <div className="top-actions">
+              <Link href="/billing" className="top-action">Credits</Link>
+              <Link href="/notifications" className="top-action">Alerts</Link>
+              <Link href="/settings" className="top-action">Settings</Link>
             </div>
           </header>
 
-          <div className="px-5 pb-10 sm:px-8">{children}</div>
+          <div className="page-body">{children}</div>
         </section>
       </div>
     </main>
   );
 }
 
-export function Card({
-  children,
-  className = ""
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return <div className={`os-panel rounded-2xl p-5 ${className}`}>{children}</div>;
+export function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <div className={`card ${className}`}>{children}</div>;
 }
 
 export function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <Card>
-      <p className="text-[11.5px] font-medium text-gray-400">{label}</p>
-      <p className="mt-2 text-[1.75rem] font-medium leading-none tracking-tight text-gray-900">{value}</p>
-    </Card>
+    <div className="card">
+      <p className="metric-label">{label}</p>
+      <p className="metric-value">{value}</p>
+    </div>
   );
 }
